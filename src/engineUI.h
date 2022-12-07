@@ -1,40 +1,30 @@
-#include <iostream>
+#ifndef ENGINEUI
+#define ENGINEUI
+
+#include <map>
 
 
-void dogsay(std::string text)
+class EngineUI
 {
-	std::cout << "  ______________________________ \n";
-	std::cout << " /                               \\\n";
-	std::cout << "|  Welcome to the Tupryk Engine.  |\n";
-	std::cout << "|      (For help type help)       |\n";
-	std::cout << " \\_______________________________/\n";
-	std::cout << " _                               \n";
-	std::cout << "(_)                              \n";
-	std::cout << "                                 \n";
-	std::cout << "  O                              \n";
-	std::cout << "   .   _-----_                   \n";
-	std::cout << "    _/|U U   \\ \\                 \n";
-	std::cout << "  /V :.       \\/         ___     \n";
-	std::cout << "  \\_______    |         / _ \\    \n";
-	std::cout << "   U    |     \\_________\\ \\/ |   \n";
-	std::cout << "       /                     \\   \n";
-	std::cout << "  ____|___./     _____./     /   \n";
-	std::cout << " //__________/__/___________/    \n";
-	std::cout << std::endl;
-}
+	std::map<std::string, void (EngineUI::*)(std::string)> commands;
+	std::string u_input;
 
-void help()
-{
-	std::cout << "exit: Exits the program." << std::endl;
-}
+	std::string game;
+	std::string chapter;
+	std::string scene;
 
-void invalid(std::string text)
-{
-	std::cout << "Invalid input.";
-	float prob = 0.1;
-	if (prob < 0.11) {
-		std::string meant = "bruh";
-		std::cout << "Did you mean \"" << meant << "\"?";
-	}
-	std::cout << "\n";
-}
+	void dogsay(std::string text);
+	void invalid(std::string text);
+	void help(std::string command);
+	void placeObject(std::string command);
+	void killObject(std::string command);
+	void createType(std::string command);
+	void deleteType(std::string command);
+
+public:
+	EngineUI(char* arg_game);
+	int getInputs();
+};
+
+
+#endif

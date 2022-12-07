@@ -5,7 +5,7 @@
 class App
 {
 public:
-	void mod();
+	void mod(char* arg_game);
 	void run();
 };
 
