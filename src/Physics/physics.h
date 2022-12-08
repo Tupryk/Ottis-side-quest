@@ -23,8 +23,8 @@ struct RigidBody : StaticBody
 	float Gravity = 0;
 	float Friction = 0;
 	float AirResistance = 0;
-	bool OnFloor = false;
 	float Bounciness = 0;
+	bool OnFloor = false;
 
 	void update(std::vector<StaticBody> bodies);
 };
