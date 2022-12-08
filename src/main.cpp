@@ -1,4 +1,6 @@
-/*#include <iostream>
+// g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_2/include -o p -L/opt/homebrew/Cellar/sfml/2.5.1_2/lib -lsfml-graphics -lsfml-window -lsfml-system -std=c++11
+#include <iostream>
+#include <SFML/Graphics.hpp>
 #include "app.h"
 
 int main(int argc, char** argv)
@@ -9,29 +11,4 @@ int main(int argc, char** argv)
 	else
 		app.run();
 	return 0;
-}*/
-
-#include <SFML/Graphics.hpp>
-
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
-
-    return 0;
 }

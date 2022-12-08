@@ -18,8 +18,10 @@ void App::mod(char* arg_game)
 
 void App::run()
 {
+    sf::RenderWindow window(sf::VideoMode(200, 200), in_game);
+
 	sf::Image icon;
-    icon.loadFromFile(resourcePath() + "../data/AppIcons/icon.png");
+    icon.loadFromFile("../data/AppIcons/icon.png");
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
     
     window.setFramerateLimit(60);
@@ -39,5 +41,4 @@ void App::run()
 
         window.display();
     }
-    return 0;
 }

@@ -14,6 +14,7 @@ EngineUI::EngineUI(char* arg_game)
 	commands["place"] = &EngineUI::placeObject;
 	commands["kill"] = &EngineUI::killObject;
 
+	dogsay("bruh");
 	std::cout << "Inizialized modder on game: " << game << std::endl;
 }
 
@@ -83,9 +84,9 @@ int EngineUI::getInputs()
 		else if (command.compare("run") == 0)
 			return 1;
 
-		commands[command]->second(u_input);
+		//commands[command]->second(u_input);
 
-		 //invalid(u_input);
+		invalid(u_input);
 	}
 }
 
