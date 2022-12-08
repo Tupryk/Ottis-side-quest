@@ -1,6 +1,8 @@
 #ifndef SPRITES
 #define SPRITES
 
+#include <SFML/Graphics.hpp>
+
 
 class StaticImage
 {
@@ -12,10 +14,10 @@ class StaticImage
 	bool flipped = false;
 
 public:
-	StaticImage(std::string ImageDrirectory, float x, float y, float w, float h);
+	void load(std::string ImageDrirectory, float x, float y, float w, float h);
 	void setScale(float x, float y);
 	void flip();
-	void draw(Vertice2D position);
+	sf::Sprite draw(float x, float y);
 };
 
 class Animation
@@ -36,11 +38,11 @@ public:
 	bool flipped = false;
 	bool reversed = false;
 
-	Animation(std::string ImageDrirectory, float x, float y, float w, float h, int frames, int fps);
-	void setScale(float ScaleX, float ScaleY);
+	void load(std::string ImageDrirectory, float x, float y, float w, float h, int frames, int fps);
+	void setScale(float x, float y);
 	void flip();
 	void update();
-	void draw(float x, float y);
+	sf::Sprite draw(float x, float y);
 };
 
 

@@ -11,8 +11,8 @@ struct StaticBody
 	vec3d position;
 	vec3d size;
 
-	bool overLap(StaticBody2D Static);
-	bool overLapOffset(StaticBody2D Static, float x, float y, float w, float h);
+	bool overLap(StaticBody body);
+	bool overLapOffset(StaticBody body, float x, float y, float w, float h);
 };
 
 struct RigidBody : StaticBody
@@ -24,7 +24,7 @@ struct RigidBody : StaticBody
 	float Friction = 0;
 	float AirResistance = 0;
 	float Bounciness = 0;
-	bool OnFloor = false;
+	bool onFloor = false;
 
 	void update(std::vector<StaticBody> bodies);
 };

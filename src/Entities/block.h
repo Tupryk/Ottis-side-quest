@@ -1,15 +1,17 @@
 #ifndef BLOCK
 #define BLOCK
 
+#include "../Physics/physics.h"
+#include "../Graphics/sprites.h"
 
-class Block
+
+class Block : StaticBody
 {
-	sf::Texture Piece1Texture;
-	sf::Sprite Piece1;
+	StaticImage image;
 
 public:
-	Block();
-	void draw();
+	Block(std::string ImageDrirectory, float x, float y, float w, float h);
+	sf::Sprite draw();
 };
 
 

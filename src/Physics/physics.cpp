@@ -1,20 +1,22 @@
+#include <vector>
+
 #include "physics.h"
 
 
-bool StaticBody::overLap(StaticBody2D Static)
+bool StaticBody::overLap(StaticBody body)
 {
-	return (position.x + (size.x*0.5) >= Static.position.x - (Static.size.x*0.5)
-			&& position.x - (size.x*0.5) <= Static.position.x + (Static.size.x*0.5)
-			&& position.y + (size.y*0.5) >= Static.position.y - (Static.size.y*0.5)
-			&& position.y - (size.y*0.5) <= Static.position.y + (Static.size.y*0.5));
+	return (position.x + (size.x*0.5) >= body.position.x - (body.size.x*0.5)
+			&& position.x - (size.x*0.5) <= body.position.x + (body.size.x*0.5)
+			&& position.y + (size.y*0.5) >= body.position.y - (body.size.y*0.5)
+			&& position.y - (size.y*0.5) <= body.position.y + (body.size.y*0.5));
 }
 
-bool StaticBody::overLapOffset(StaticBody2D Static, float x, float y, float w, float h)
+bool StaticBody::overLapOffset(StaticBody body, float x, float y, float w, float h)
 {
-	return (position.x + (size.x*0.5) + w >= Static.position.x - (Static.size.x*0.5)
-			&& position.x - (size.x*0.5) - x <= Static.position.x + (Static.size.x*0.5)
-			&& position.y + (size.y*0.5) + h >= Static.position.y - (Static.size.y*0.5)
-			&& position.y - (size.y*0.5) - y <= Static.position.y + (Static.size.y*0.5));
+	return (position.x + (size.x*0.5) + w >= body.position.x - (body.size.x*0.5)
+			&& position.x - (size.x*0.5) - x <= body.position.x + (body.size.x*0.5)
+			&& position.y + (size.y*0.5) + h >= body.position.y - (body.size.y*0.5)
+			&& position.y - (size.y*0.5) - y <= body.position.y + (body.size.y*0.5));
 }
 
 void RigidBody::update(std::vector<StaticBody> bodies)
@@ -34,7 +36,7 @@ void RigidBody::update(std::vector<StaticBody> bodies)
 	position.x = position.x + velocity.x + ( 0.5 * acceleration.x );
 	// Check for collisions
 	for (auto body : bodies) {
-		if (OverLap(body)) { // revert to old position
+		if (overLap(body)) { // revert to old position
 			position.x = position.x - (velocity.x + ( 0.5 * acceleration.x ));
 			velocity.x = 0;
 			break;
@@ -44,12 +46,12 @@ void RigidBody::update(std::vector<StaticBody> bodies)
 	// Repeat for y-axis
 	position.y = position.y + velocity.y + ( 0.5 * acceleration.y ) - ( 0.5 * Gravity );
 	for (auto body : bodies) {
-		if (OverLap(body)) {
+		if (overLap(body)) {
 			position.y = position.y - (velocity.y + ( 0.5 * acceleration.y ) - ( 0.5 * Gravity ));
 			velocity.y = -velocity.y * Bounciness;
-			OnFloor = true;
+			onFloor = true;
 			return;
 		}
 	}
-	OnFloor = false;
+	onFloor = false;
 }

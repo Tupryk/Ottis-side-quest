@@ -6,6 +6,7 @@
 
 #include "app.h"
 #include "engineUI.h"
+#include "Entities/block.h" // temporal //
 
 
 void App::mod(char* arg_game)
@@ -18,6 +19,8 @@ void App::mod(char* arg_game)
 
 void App::run()
 {
+    Block block("../data/Games/Game0/Assets/Img/ottiface.png", 0, 0, 64, 64);
+
     sf::RenderWindow window(sf::VideoMode(1000, 1000), in_game);
 
 	sf::Image icon;
@@ -38,6 +41,8 @@ void App::run()
         }
 
         window.clear(sf::Color(200, 200, 255));
+
+        window.draw(block.draw());
 
         window.display();
     }

@@ -1,7 +1,10 @@
+#include <cmath>
+#include <SFML/Graphics.hpp>
+
 #include "sprites.h"
 
 
-StaticImage::StaticImage(std::string ImageDrirectory, float x, float y, float w, float h, bool Smooth)
+void StaticImage::load(std::string ImageDrirectory, float x, float y, float w, float h)
 {
 	texture.loadFromFile(ImageDrirectory, sf::IntRect(x, y, w, h));
 	sprite.setTexture(texture);
@@ -25,18 +28,18 @@ void StaticImage::flip()
 	sprite.setScale(scaleX, scaleY);
 }
 
-void StaticImage::draw(float x, float y)
+sf::Sprite StaticImage::draw(float x, float y)
 {
 	float set_y = y - height*0.5;
 	float set_x;
-	if (flipped) set_x = x + width*0.5
-	else set_x = position.x - width*0.5
+	if (flipped) set_x = x + width*0.5;
+	else set_x = x - width*0.5;
 
 	sprite.setPosition(std::round(set_x), std::round(set_y));
-	window.draw(sprite);
+	return sprite;
 }
 
-Animation::Animation(std::string ImageDrirectory, float x, float y, float w, float h, int frames, int fps)
+void Animation::load(std::string ImageDrirectory, float x, float y, float w, float h, int frames, int fps)
 {
 	this->frames = frames;
 	this->fps = fps;
@@ -49,7 +52,7 @@ Animation::Animation(std::string ImageDrirectory, float x, float y, float w, flo
 	height = h;
 }
 
-void Animation::setScale(float NewScaleX, float NewScaleY)
+void Animation::setScale(float x, float y)
 {
 	scaleX = x;
 	scaleY = y;
@@ -78,7 +81,7 @@ void Animation::update()
 		else
 		{
 			frameIndex--;
-			if (FrameIndex < 0)
+			if (frameIndex < 0)
 				frameIndex = frames-1;
 		}
 	}
@@ -86,14 +89,14 @@ void Animation::update()
 	Timer.restart();
 }
 
-void Animation::draw(float x, float y)
+sf::Sprite Animation::draw(float x, float y)
 {
 	update();
 	float set_y = y - height*0.5;
 	float set_x;
-	if (flipped) set_x = x + width*0.5
-	else set_x = position.x - width*0.5
+	if (flipped) set_x = x + width*0.5;
+	else set_x = x - width*0.5;
 
 	sprite.setPosition(std::round(set_x), std::round(set_y));
-	window.draw(sprite);
+	return sprite;
 }
