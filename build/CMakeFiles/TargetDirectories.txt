@@ -1,7 +1,0 @@
-/Users/tupryk/Documents/Projects/Ottis-side-quest/build/CMakeFiles/SFMLBoilerplate.dir
-/Users/tupryk/Documents/Projects/Ottis-side-quest/build/CMakeFiles/edit_cache.dir
-/Users/tupryk/Documents/Projects/Ottis-side-quest/build/CMakeFiles/rebuild_cache.dir
-/Users/tupryk/Documents/Projects/Ottis-side-quest/build/CMakeFiles/list_install_components.dir
-/Users/tupryk/Documents/Projects/Ottis-side-quest/build/CMakeFiles/install.dir
-/Users/tupryk/Documents/Projects/Ottis-side-quest/build/CMakeFiles/install/local.dir
-/Users/tupryk/Documents/Projects/Ottis-side-quest/build/CMakeFiles/install/strip.dir
