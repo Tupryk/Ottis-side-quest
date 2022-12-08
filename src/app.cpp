@@ -18,7 +18,7 @@ void App::mod(char* arg_game)
 
 void App::run()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), in_game);
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), in_game);
 
 	sf::Image icon;
     icon.loadFromFile("../data/AppIcons/icon.png");
