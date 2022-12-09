@@ -1,6 +1,9 @@
 #ifndef PHYSICS
 #define PHYSICS
 
+#include <vector>
+
+
 struct vec3d
 {
 	float x = 0, y = 0, z = 0;
@@ -26,7 +29,7 @@ struct RigidBody : StaticBody
 	float Bounciness = 0;
 	bool onFloor = false;
 
-	void update(std::vector<StaticBody> bodies);
+	void update(std::vector<StaticBody> bodies = {});
 };
 
 #endif
