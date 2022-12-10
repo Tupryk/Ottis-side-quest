@@ -15,6 +15,6 @@ void App::mod(char* arg_game)
 
 void App::run()
 {
-	Game game(640, 320);
+	Game game(360*4, 240*4);
     game.run();
 }

@@ -12,7 +12,7 @@ Game::Game(unsigned int width, unsigned int height, std::string title, std::stri
 
 void Game::run()
 {
-	Scene scene(width, height, 100);
+	Scene scene(360, 240, 1000);
 	sf::RenderWindow window(sf::VideoMode(width, height), title);
 
 	sf::Image icon;
@@ -21,10 +21,11 @@ void Game::run()
 	
 	window.setFramerateLimit(60);
 
+	sf::Event event;
+
 	std::cout << ":Running Game:" << std::endl;
 	while (window.isOpen())
 	{
-		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				window.close();

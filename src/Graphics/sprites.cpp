@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
@@ -34,6 +35,8 @@ void StaticImage::draw(float x, float y, sf::RenderWindow* window)
 	float set_x;
 	if (flipped) set_x = x + width*0.5;
 	else set_x = x - width*0.5;
+
+	std::cout << "player: " << set_x << std::endl;
 
 	sprite.setTexture(texture);
 	sprite.setPosition(std::round(set_x), std::round(set_y));

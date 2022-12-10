@@ -7,8 +7,8 @@
 
 Block::Block(std::string ImageDrirectory, float x, float y, float w, float h)
 {
-	size.x = x;
-	size.y = y;
+	this->size.x = w;
+	this->size.y = h;
 	image.load(ImageDrirectory, x, y, w, h);
 }
 

@@ -5,12 +5,14 @@
 #include <vector>
 
 #include "../Graphics/camera.h"
+#include "../Entities/player.h"
 #include "../Entities/block.h"
 
 
 class Scene
 {
 	Camera camera;
+	Player player;
 	std::vector<Block> blocks;
 
 public:
