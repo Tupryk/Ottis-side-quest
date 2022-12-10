@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
@@ -74,8 +73,6 @@ void Camera::draw(float x, float y, sf::RenderWindow* window)
 		position.x = scene_w;
 	if (position.y > scene_h)
 		position.y = scene_h;
-
-	std::cout << "camera: " << position.x << std::endl;
 
 	sf::View camera(sf::FloatRect(std::round((-window_w*0.5) + position.x), std::round((-window_h*0.5) + position.y), window_w, window_h));
 	window->setView(camera);

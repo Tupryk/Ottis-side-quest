@@ -14,7 +14,7 @@ class Player : public RigidBody
 	bool jumpBuffer = false;
 
 public:
-	Player(std::string ImageDrirectory, float x, float y, float w, float h);
+	Player(std::string ImageDrirectory, float w, float h, float x = 0, float y = 0);
 	void move();
 	void draw(sf::RenderWindow* window);
 };

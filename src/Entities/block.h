@@ -10,7 +10,7 @@ class Block : public StaticBody
 	StaticImage image;
 
 public:
-	Block(std::string ImageDrirectory, float x, float y, float w, float h);
+	Block(std::string ImageDrirectory, float w, float h, float x = 0, float y = 0);
 	void draw(sf::RenderWindow* window);
 };
 

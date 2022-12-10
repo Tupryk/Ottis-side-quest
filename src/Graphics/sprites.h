@@ -14,7 +14,7 @@ class StaticImage
 	bool flipped = false;
 
 public:
-	void load(std::string ImageDrirectory, float x, float y, float w, float h);
+	void load(std::string ImageDrirectory, float w, float h, float x = 0, float y = 0);
 	void setScale(float x, float y);
 	void flip();
 	void draw(float x, float y, sf::RenderWindow* window);
@@ -38,7 +38,7 @@ public:
 	bool flipped = false;
 	bool reversed = false;
 
-	void load(std::string ImageDrirectory, float x, float y, float w, float h, int frames, int fps);
+	void load(std::string ImageDrirectory, int frames, int fps, float w, float h, float x = 0, float y = 0);
 	void setScale(float x, float y);
 	void flip();
 	void update();

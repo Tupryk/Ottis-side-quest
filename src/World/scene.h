@@ -7,12 +7,14 @@
 #include "../Graphics/camera.h"
 #include "../Entities/player.h"
 #include "../Entities/block.h"
+#include "../Entities/background.h"
 
 
 class Scene
 {
 	Camera camera;
 	Player player;
+	Slice slice;
 	std::vector<Block> blocks;
 
 public:

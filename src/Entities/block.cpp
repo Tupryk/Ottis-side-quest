@@ -5,11 +5,11 @@
 #include "block.h"
 
 
-Block::Block(std::string ImageDrirectory, float x, float y, float w, float h)
+Block::Block(std::string ImageDrirectory, float w, float h, float x, float y)
 {
 	this->size.x = w;
 	this->size.y = h;
-	image.load(ImageDrirectory, x, y, w, h);
+	image.load(ImageDrirectory, w, h, x, y);
 }
 
 void Block::draw(sf::RenderWindow* window)

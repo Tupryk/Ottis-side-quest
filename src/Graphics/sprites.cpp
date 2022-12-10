@@ -1,11 +1,10 @@
-#include <iostream>
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
 #include "sprites.h"
 
 
-void StaticImage::load(std::string ImageDrirectory, float x, float y, float w, float h)
+void StaticImage::load(std::string ImageDrirectory, float w, float h, float x, float y)
 {
 	texture.loadFromFile(ImageDrirectory, sf::IntRect(x, y, w, h));
 	sprite.setTexture(texture);
@@ -36,14 +35,12 @@ void StaticImage::draw(float x, float y, sf::RenderWindow* window)
 	if (flipped) set_x = x + width*0.5;
 	else set_x = x - width*0.5;
 
-	std::cout << "player: " << set_x << std::endl;
-
 	sprite.setTexture(texture);
 	sprite.setPosition(std::round(set_x), std::round(set_y));
 	window->draw(sprite);
 }
 
-void Animation::load(std::string ImageDrirectory, float x, float y, float w, float h, int frames, int fps)
+void Animation::load(std::string ImageDrirectory, int frames, int fps, float w, float h, float x, float y)
 {
 	this->frames = frames;
 	this->fps = fps;

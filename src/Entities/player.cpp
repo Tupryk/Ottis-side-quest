@@ -1,11 +1,11 @@
 #include "player.h"
 
 
-Player::Player(std::string ImageDrirectory, float x, float y, float w, float h)
+Player::Player(std::string ImageDrirectory, float w, float h, float x, float y)
 {
 	size.x = w;
 	size.y = h;
-	image.load(ImageDrirectory, x, y, w, h);
+	image.load(ImageDrirectory, w, h, x, y);
 
 	Gravity = -0.5;
 	Friction = 0.1;
