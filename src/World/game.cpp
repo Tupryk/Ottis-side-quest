@@ -1,4 +1,5 @@
 #include "game.h"
+#include "scene.h"
 
 
 Game::Game(unsigned int width, unsigned int height, std::string title, std::string icon_file)
@@ -11,6 +12,7 @@ Game::Game(unsigned int width, unsigned int height, std::string title, std::stri
 
 void Game::run()
 {
+	Scene scene(width, height, 100);
 	sf::RenderWindow window(sf::VideoMode(width, height), title);
 
 	sf::Image icon;
@@ -20,7 +22,6 @@ void Game::run()
 	window.setFramerateLimit(60);
 
 	std::cout << ":Running Game:" << std::endl;
-
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -28,8 +29,9 @@ void Game::run()
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				window.close();
 		}
-
 		window.clear(sf::Color(200, 200, 255));
+
+		scene.render(&window);
 
 		window.display();
 	}

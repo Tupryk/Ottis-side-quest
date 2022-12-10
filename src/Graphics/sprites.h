@@ -17,7 +17,7 @@ public:
 	void load(std::string ImageDrirectory, float x, float y, float w, float h);
 	void setScale(float x, float y);
 	void flip();
-	sf::Sprite draw(float x, float y);
+	void draw(float x, float y, sf::RenderWindow* window);
 };
 
 class Animation
@@ -42,7 +42,7 @@ public:
 	void setScale(float x, float y);
 	void flip();
 	void update();
-	sf::Sprite draw(float x, float y);
+	void draw(float x, float y, sf::RenderWindow* window);
 };
 
 

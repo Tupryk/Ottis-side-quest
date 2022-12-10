@@ -10,11 +10,11 @@
 
 class Game
 {
-	unsigned int width;
-	unsigned int height;
+	int width;
+	int height;
 	std::string title;
 	std::string icon_path;
-	std::vector<Chapter> chapters;
+	Chapter chapter;
 
 public:
 	Game(unsigned int width, unsigned int height, std::string title = "Tupryk Engine", std::string icon_file = "icon.png");

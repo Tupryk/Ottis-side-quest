@@ -12,7 +12,7 @@ Block::Block(std::string ImageDrirectory, float x, float y, float w, float h)
 	image.load(ImageDrirectory, x, y, w, h);
 }
 
-sf::Sprite Block::draw()
+void Block::draw(sf::RenderWindow* window)
 {
-	return image.draw(position.x, position.y);
+	image.draw(position.x, position.y, window);
 }

@@ -28,15 +28,16 @@ void StaticImage::flip()
 	sprite.setScale(scaleX, scaleY);
 }
 
-sf::Sprite StaticImage::draw(float x, float y)
+void StaticImage::draw(float x, float y, sf::RenderWindow* window)
 {
 	float set_y = y - height*0.5;
 	float set_x;
 	if (flipped) set_x = x + width*0.5;
 	else set_x = x - width*0.5;
 
+	sprite.setTexture(texture);
 	sprite.setPosition(std::round(set_x), std::round(set_y));
-	return sprite;
+	window->draw(sprite);
 }
 
 void Animation::load(std::string ImageDrirectory, float x, float y, float w, float h, int frames, int fps)
@@ -89,7 +90,7 @@ void Animation::update()
 	Timer.restart();
 }
 
-sf::Sprite Animation::draw(float x, float y)
+void Animation::draw(float x, float y, sf::RenderWindow* window)
 {
 	update();
 	float set_y = y - height*0.5;
@@ -98,5 +99,5 @@ sf::Sprite Animation::draw(float x, float y)
 	else set_x = x - width*0.5;
 
 	sprite.setPosition(std::round(set_x), std::round(set_y));
-	return sprite;
+	window->draw(sprite);
 }

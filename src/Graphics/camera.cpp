@@ -4,10 +4,12 @@
 #include "camera.h"
 
 
-DynamicCamera::DynamicCamera(unsigned int screenWidth, unsigned int screenHeight, float offsetX, float offsetY, float speed)
+DynamicCamera::DynamicCamera(unsigned int window_w, unsigned int window_h, int scene_w, int scene_h, float offsetX, float offsetY, float speed)
 {
-	this->screenWidth = screenWidth;
-	this->screenHeight = screenHeight;
+	this->scene_w = scene_w;
+	this->scene_h = scene_h;
+	this->window_w = window_w;
+	this->window_h = window_h;
 	this->offsetX = offsetX;
 	this->offsetY = offsetY;
 	this->speed = speed;
@@ -17,7 +19,7 @@ DynamicCamera::DynamicCamera(unsigned int screenWidth, unsigned int screenHeight
 	AirResistance = 0.1;
 }
 
-void DynamicCamera::draw(float x, float y)
+void DynamicCamera::draw(float x, float y, sf::RenderWindow* window)
 {
 	if (position.x < x - offsetX)
 		acceleration.x = speed;
@@ -34,22 +36,46 @@ void DynamicCamera::draw(float x, float y)
 		acceleration.y = 0;
 
 	update();
-	sf::View camera(sf::FloatRect(std::round((-screenWidth*0.5) + position.x), std::round((-screenHeight*0.5) + position.y), screenWidth, screenHeight));
-	//window.setView(camera);
+
+	if (position.x < 0)
+		position.x = 0;
+	if (position.y < 0)
+		position.y = 0;
+
+	if (position.x > scene_w)
+		position.x = scene_w;
+	if (position.y > scene_h)
+		position.y = scene_h;
+
+	sf::View camera(sf::FloatRect(std::round((-window_w*0.5) + position.x), std::round((-window_h*0.5) + position.y), window_w, window_h));
+	window->setView(camera);
 }
 
-Camera::Camera(unsigned int screenWidth, unsigned int screenHeight)
+Camera::Camera(unsigned int window_w, unsigned int window_h, int scene_w, int scene_h)
 {
-	this->screenWidth = screenWidth;
-	this->screenHeight = screenHeight;
+	this->scene_w = scene_w;
+	this->scene_h = scene_h;
+	this->window_w = window_w;
+	this->window_h = window_h;
 }
 
-void Camera::draw(float x, float y)
+void Camera::draw(float x, float y, sf::RenderWindow* window)
 {
 	position.x = x;
 	position.y = y;
-	sf::View camera(sf::FloatRect(std::round((-screenWidth*0.5) + position.x), std::round((-screenHeight*0.5) + position.y), screenWidth, screenHeight));
-	//window.setView(camera);
+
+	if (position.x < 0)
+		position.x = 0;
+	if (position.y < 0)
+		position.y = 0;
+
+	if (position.x > scene_w)
+		position.x = scene_w;
+	if (position.y > scene_h)
+		position.y = scene_h;
+
+	sf::View camera(sf::FloatRect(std::round((-window_w*0.5) + position.x), std::round((-window_h*0.5) + position.y), window_w, window_h));
+	window->setView(camera);
 }
 
 

@@ -6,25 +6,32 @@
 
 class Camera : StaticBody
 {
-	unsigned int screenWidth = 64;
-	unsigned int screenHeight = 32;
+	int scene_w;
+	int scene_h;
+
+	int window_w;
+	int window_h;
+
 public:
-	Camera(unsigned int screenWidth, unsigned int screenHeight);
-	void draw(float x, float y);
+	Camera(unsigned int window_w, unsigned int window_h, int scene_w = 0, int scene_h = 0);
+	void draw(float x, float y, sf::RenderWindow* window);
 };
 
 class DynamicCamera : RigidBody
 {
-	unsigned int screenWidth = 64;
-	unsigned int screenHeight = 32;
+	int scene_w;
+	int scene_h;
+
+	int window_w;
+	int window_h;
 
 	float speed = 1;
 	float offsetX = 0;
 	float offsetY = 0;
 
 public:
-	DynamicCamera(unsigned int screenWidth, unsigned int screenHeight, float offsetX, float offsetY, float speed);
-	void draw(float x, float y);
+	DynamicCamera(unsigned int window_w, unsigned int window_h, int scene_w = 0, int scene_h = 0, float offsetX = 0, float offsetY = 0, float speed = 1);
+	void draw(float x, float y, sf::RenderWindow* window);
 };
 
 

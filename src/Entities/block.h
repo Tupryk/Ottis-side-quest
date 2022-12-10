@@ -5,13 +5,13 @@
 #include "../Graphics/sprites.h"
 
 
-class Block : StaticBody
+class Block : public StaticBody
 {
 	StaticImage image;
 
 public:
 	Block(std::string ImageDrirectory, float x, float y, float w, float h);
-	sf::Sprite draw();
+	void draw(sf::RenderWindow* window);
 };
 
 
