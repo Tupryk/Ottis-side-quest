@@ -1,7 +1,7 @@
 #include "background.h"
 
 
-Slice::Slice(float pos_x, float pos_y, float pos_z, std::string ImageDrirectory, float w, float h, float x, float y)
+void Slice::init(float pos_x, float pos_y, float pos_z, std::string ImageDrirectory, float w, float h, float x, float y)
 {
 	position.x = pos_x;
 	position.y = pos_y;

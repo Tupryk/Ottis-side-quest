@@ -85,9 +85,9 @@ void Animation::update()
 			if (frameIndex < 0)
 				frameIndex = frames-1;
 		}
+		Timer.restart();
 	}
 	sprite.setTexture(texture[frameIndex]);
-	Timer.restart();
 }
 
 void Animation::draw(float x, float y, sf::RenderWindow* window)

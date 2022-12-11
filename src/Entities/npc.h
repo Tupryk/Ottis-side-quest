@@ -1,21 +1,19 @@
-#ifndef PLAYER
-#define PLAYER
+#ifndef NPCS_H
+#define NPCS_H
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
 
 
-class Player : public RigidBody
+class NPC : public RigidBody
 {
 	StaticImage image;
-
-	float speed = 0.3;
-	float jumpStrength = 7;
-	bool jumpBuffer = false;
+	sf::Clock Timer;
+	float speed = 0.02;
 
 public:
 	void init(std::string ImageDrirectory, float w, float h, float x = 0, float y = 0);
-	void move();
+	void wander();
 	void draw(sf::RenderWindow* window);
 };
 

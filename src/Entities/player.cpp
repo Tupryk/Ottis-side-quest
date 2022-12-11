@@ -1,7 +1,7 @@
 #include "player.h"
 
 
-Player::Player(std::string ImageDrirectory, float w, float h, float x, float y)
+void Player::init(std::string ImageDrirectory, float w, float h, float x, float y)
 {
 	size.x = w;
 	size.y = h;

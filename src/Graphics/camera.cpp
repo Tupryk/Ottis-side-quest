@@ -4,7 +4,7 @@
 #include "camera.h"
 
 
-DynamicCamera::DynamicCamera(unsigned int window_w, unsigned int window_h, int scene_w, int scene_h, float offsetX, float offsetY, float speed)
+void DynamicCamera::init(unsigned int window_w, unsigned int window_h, int scene_w, int scene_h, float offsetX, float offsetY, float speed)
 {
 	this->scene_w = scene_w;
 	this->scene_h = scene_h;
@@ -51,7 +51,7 @@ void DynamicCamera::draw(float x, float y, sf::RenderWindow* window)
 	window->setView(camera);
 }
 
-Camera::Camera(unsigned int window_w, unsigned int window_h, int scene_w, int scene_h)
+void Camera::init(unsigned int window_w, unsigned int window_h, int scene_w, int scene_h)
 {
 	this->scene_w = scene_w;
 	this->scene_h = scene_h;

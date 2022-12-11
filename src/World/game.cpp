@@ -12,7 +12,7 @@ Game::Game(unsigned int width, unsigned int height, std::string title, std::stri
 
 void Game::run()
 {
-	Scene scene(360, 240, 1000);
+	Scene scene(360, 240, "scene1.txt");
 	sf::RenderWindow window(sf::VideoMode(width, height), title);
 
 	sf::Image icon;
