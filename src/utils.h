@@ -5,24 +5,17 @@
 #include <sstream>
 #include <vector>
 #include <iterator>
+#include <fstream>
 
 
 template <typename Out>
-void split(const std::string &s, char delim, Out result) {
-    std::istringstream iss(s);
-    std::string item;
-    while (std::getline(iss, item, delim)) {
-        *result++ = item;
-    }
-}
+void split(const std::string &s, char delim, Out result);
 
-std::vector<std::string> split(const std::string &s, char delim) {
-    std::vector<std::string> elems;
-    split(s, delim, std::back_inserter(elems));
-    return elems;
-}
+std::vector<std::string> split(const std::string &s, char delim);
 
-bool compareStrings(std::string s1, std::string s2, std::string to) {return (abs(s1.compare(to)) < abs(s2.compare(to)));}
+bool compareStrings(std::string s1, std::string s2, std::string to);
+
+std::vector<std::string> getFileLines(std::string path);
 
 
 #endif

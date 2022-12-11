@@ -4,6 +4,11 @@
 #include <vector>
 
 
+struct vec2d
+{
+	float x = 0, y = 0;
+};
+
 struct vec3d
 {
 	float x = 0, y = 0, z = 0;

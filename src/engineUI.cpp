@@ -1,8 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
 #include "engineUI.h"
-#include "utils.h"
 
 
 EngineUI::EngineUI(char* arg_game)

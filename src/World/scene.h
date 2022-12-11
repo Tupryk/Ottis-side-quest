@@ -8,6 +8,7 @@
 #include "../Entities/player.h"
 #include "../Entities/block.h"
 #include "../Entities/background.h"
+#include "../utils.h"
 
 
 class Scene

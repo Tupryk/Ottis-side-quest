@@ -1,7 +1,13 @@
 #ifndef ENGINEUI
 #define ENGINEUI
 
+#include <iostream>
+#include <vector>
+#include <cmath>
 #include <map>
+
+#include "engineUI.h"
+#include "utils.h"
 
 
 class EngineUI

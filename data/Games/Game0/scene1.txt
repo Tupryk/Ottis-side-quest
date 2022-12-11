@@ -1,0 +1,20 @@
+Scene_data {
+	width: 100
+	height: 100
+}
+
+create block {
+	texture: ../data/Games/Game0/Assets/Img/ottiface.png
+	width: 64
+	height: 64
+	x_pos: 0
+	y_pos: 100
+}
+
+create block {
+	texture: ../data/Games/Game0/Assets/Img/ottiface.png
+	width: 64
+	height: 64
+	x_pos: 69
+	y_pos: 69
+}
