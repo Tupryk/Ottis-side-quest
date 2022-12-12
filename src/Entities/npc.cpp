@@ -10,6 +10,24 @@ void NPC::init(std::string ImageDrirectory, float w, float h, float x, float y)
 	Gravity = -0.5;
 	Friction = 0.1;
 	AirResistance = 0.01;
+
+	button.init('e');
+}
+void NPC::chat(StaticBody body, sf::RenderWindow* window)
+{
+	button.draw(position.x, position.y-size.y, window, overLap(body));
+}
+
+void NPC::follow(StaticBody body)
+{
+	if (!overLap(body)) {
+		if (body.position.x > position.x)
+			acceleration.x = speed;
+		else
+			acceleration.x = -speed;
+	} else {
+		acceleration.x = 0;
+	}
 }
 
 void NPC::wander()

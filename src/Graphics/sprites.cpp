@@ -69,11 +69,11 @@ void Animation::flip()
 	sprite.setScale(scaleX, scaleY);
 }
 
-void Animation::update()
+void Animation::update(bool reversed)
 {
 	sf::Time lastUpdate = Timer.getElapsedTime();
 	if (lastUpdate.asMilliseconds() >= (1000/fps)) {
-		if (reversed)
+		if (!reversed)
 		{
 			frameIndex++;
 			if (frameIndex >= frames)
@@ -90,9 +90,9 @@ void Animation::update()
 	sprite.setTexture(texture[frameIndex]);
 }
 
-void Animation::draw(float x, float y, sf::RenderWindow* window)
+void Animation::draw(float x, float y, sf::RenderWindow* window, bool reversed)
 {
-	update();
+	update(reversed);
 	float set_y = y - height*0.5;
 	float set_x;
 	if (flipped) set_x = x + width*0.5;

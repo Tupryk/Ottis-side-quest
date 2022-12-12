@@ -28,6 +28,8 @@ class Animation
 	float scaleX = 1;
 	float scaleY = 1;
 	float width, height; // for flipping the image
+	
+	void update(bool reversed);
 
 public:
 	/* This parameters are set to public for
@@ -36,13 +38,11 @@ public:
 	int frameIndex = 0;
 	int fps = 1;
 	bool flipped = false;
-	bool reversed = false;
 
 	void load(std::string ImageDrirectory, int frames, int fps, float w, float h, float x = 0, float y = 0);
 	void setScale(float x, float y);
 	void flip();
-	void update();
-	void draw(float x, float y, sf::RenderWindow* window);
+	void draw(float x, float y, sf::RenderWindow* window, bool reversed = false);
 };
 
 

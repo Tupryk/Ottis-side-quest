@@ -139,6 +139,9 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 					int height = -1;
 					float x_pos = 0;
 					float y_pos = 0;
+					float speed = 0.02;
+					bool chatter = false;
+					bool evil = false;
 					i++;
 					attributes = split(lines[i], ' ');
 					while (attributes.size() >= 1 && attributes[0] != "}")
@@ -155,6 +158,12 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 								x_pos = std::stof(attributes[1]);
 							if (attributes[0].compare("	y_pos:") == 0)
 								y_pos = std::stof(attributes[1]);
+							if (attributes[0].compare("	chatter:") == 0)
+								chatter = true;
+							if (attributes[0].compare("	evil:") == 0)
+								evil = true;
+							if (attributes[0].compare("	speed:") == 0)
+								speed = std::stof(attributes[1]);
 						}
 						i++;
 						attributes = split(lines[i], ' ');
@@ -164,6 +173,9 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 						new_npc.init("../data/Games/Game0/Assets/Img/"+texture, width, height);
 						new_npc.position.x = x_pos;
 						new_npc.position.y = y_pos;
+						new_npc.chatter = chatter;
+						new_npc.evil = evil;
+						new_npc.speed = speed;
 						npcs.push_back(new_npc);
 					}
 				}
@@ -173,22 +185,28 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 }
 
 void Scene::render(sf::RenderWindow* window)
-{	
+{
 	std::vector<StaticBody> bodies(blocks.begin(), blocks.end());
 
 	player.move();
 	player.update(bodies);
 	for (int i = 0; i < npcs.size(); i++) {
-		npcs[i].wander();
+		if (npcs[i].evil)
+			npcs[i].follow(player);
+		else
+			npcs[i].wander();
 		npcs[i].update(bodies);
 	}
 
 	camera.draw(player.position.x, player.position.y, window);
 
-	for (auto npc : npcs)
-		npc.draw(window);
 	for (auto slice : slices)
 		slice.draw(camera, window);
+	for (int i = 0; i < npcs.size(); i++) {
+		if (npcs[i].chatter)
+			npcs[i].chat(player, window);
+		npcs[i].draw(window);
+	}
 	for (auto block : blocks)
 		block.draw(window);
 	player.draw(window);
