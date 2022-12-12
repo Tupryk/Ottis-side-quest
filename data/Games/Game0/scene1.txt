@@ -41,14 +41,16 @@ create slice 0 {
 }
 
 create npc 0 {
-	texture: OttiSpriteSheet.png
+	walk_anim: OttiSpriteSheet.png 1 6 16 16 0 0
+	idle_anim: OttiSpriteSheet.png 1 6 16 16 0 0
 	width: 16
 	height: 16
 	chatter: yes
 }
 
 create npc 1 {
-	texture: gon_scene/gonwalk.png
+	walk_anim: gon_scene/gonwalk.png 7 6 40 40 0 0
+	idle_anim: gon_scene/gonwalk.png 1 6 40 40 0 40
 	width: 40
 	height: 40
 	speed: 0.07

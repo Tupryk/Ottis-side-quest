@@ -7,18 +7,25 @@
 #include "interaction.h"
 
 
+enum NPCStates { walking, running, attacking, idle };
+
 class NPC : public RigidBody
 {
-	StaticImage image;
 	sf::Clock Timer;
 	PressButton button;
+	NPCStates state = idle;
+
+	void updateState();
 
 public:
+	Animation walk_anim;
+	Animation idle_anim;
+	
 	float speed = 0.02;
 	bool chatter = false;
 	bool evil = false;
 
-	void init(std::string ImageDrirectory, float w, float h, float x = 0, float y = 0);
+	void init();
 	void chat(StaticBody body, sf::RenderWindow* window);
 	void wander();
 	void follow(StaticBody body);

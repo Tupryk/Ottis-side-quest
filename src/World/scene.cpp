@@ -57,7 +57,7 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 						attributes = split(lines[i], ' ');
 					}
 					if (texture.compare("") != 0 && width >= 0 && height >= 0) {
-						Block new_block("../data/Games/Game0/Assets/Img/"+texture, width, height);
+						Block new_block(texture, width, height);
 						new_block.position.x = x_pos;
 						new_block.position.y = y_pos;
 						blocks.push_back(new_block);
@@ -91,7 +91,7 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 						attributes = split(lines[i], ' ');
 					}
 					if (texture.compare("") != 0 && width >= 0 && height >= 0) {
-						player.init("../data/Games/Game0/Assets/Img/"+texture, width, height);
+						player.init(texture, width, height);
 						player.position.x = x_pos;
 						player.position.y = y_pos;
 					}
@@ -128,12 +128,14 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 					}
 					if (texture.compare("") != 0 && width >= 0 && height >= 0) {
 						Slice new_slice;
-						new_slice.init(x_pos, y_pos, z_pos, "../data/Games/Game0/Assets/Img/"+texture, width, height);
+						new_slice.init(x_pos, y_pos, z_pos, texture, width, height);
 						slices.push_back(new_slice);
 					}
 				}
 				else if (attributes[1].compare("npc") == 0)
 				{
+					NPC new_npc;
+					new_npc.init();
 					std::string texture = "";
 					int width = -1;
 					int height = -1;
@@ -164,20 +166,22 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 								evil = true;
 							if (attributes[0].compare("	speed:") == 0)
 								speed = std::stof(attributes[1]);
+							if (attributes[0].compare("	walk_anim:") == 0)
+								new_npc.walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+							if (attributes[0].compare("	idle_anim:") == 0)
+								new_npc.idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
 						}
 						i++;
 						attributes = split(lines[i], ' ');
 					}
-					if (texture.compare("") != 0 && width >= 0 && height >= 0) {
-						NPC new_npc;
-						new_npc.init("../data/Games/Game0/Assets/Img/"+texture, width, height);
-						new_npc.position.x = x_pos;
-						new_npc.position.y = y_pos;
-						new_npc.chatter = chatter;
-						new_npc.evil = evil;
-						new_npc.speed = speed;
-						npcs.push_back(new_npc);
-					}
+					new_npc.size.x = width;
+					new_npc.size.y = height;
+					new_npc.position.x = x_pos;
+					new_npc.position.y = y_pos;
+					new_npc.chatter = chatter;
+					new_npc.evil = evil;
+					new_npc.speed = speed;
+					npcs.push_back(new_npc);
 				}
 			}
 		}

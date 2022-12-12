@@ -6,7 +6,7 @@
 
 void StaticImage::load(std::string ImageDrirectory, float w, float h, float x, float y)
 {
-	texture.loadFromFile(ImageDrirectory, sf::IntRect(x, y, w, h));
+	texture.loadFromFile("../data/Games/Game0/Assets/Img/"+ImageDrirectory, sf::IntRect(x, y, w, h));
 	sprite.setTexture(texture);
 	width = w;
 	height = h;
@@ -46,7 +46,7 @@ void Animation::load(std::string ImageDrirectory, int frames, int fps, float w, 
 	this->fps = fps;
 	texture = new sf::Texture[frames];
 	for (int i = 0; i < frames; i++) {
-		texture[i].loadFromFile(ImageDrirectory, sf::IntRect(x+(w*i), y, w, h));
+		texture[i].loadFromFile("../data/Games/Game0/Assets/Img/"+ImageDrirectory, sf::IntRect(x+(w*i), y, w, h));
 		sprite.setTexture(texture[i]);
 	}
 	width = w;

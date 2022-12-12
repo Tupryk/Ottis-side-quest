@@ -4,11 +4,11 @@
 void PressButton::init(char c)
 {
 	if (c == 'e') {
-		appearing.load("../data/Games/Game0/Assets/Img/InteractionButton.png", 3, 6, 16, 25);
-		staying.load("../data/Games/Game0/Assets/Img/InteractionButton.png", 8, 6, 16, 25, 48);
+		appearing.load("InteractionButton.png", 3, 6, 16, 25);
+		staying.load("InteractionButton.png", 8, 6, 16, 25, 48);
 	} else {
-		appearing.load("../data/Games/Game0/Assets/Img/InteractionButton.png", 3, 6, 16, 25);
-		staying.load("../data/Games/Game0/Assets/Img/InteractionButton.png", 8, 6, 16, 25, 48);
+		appearing.load("InteractionButton.png", 3, 6, 16, 25);
+		staying.load("InteractionButton.png", 8, 6, 16, 25, 48);
 	}
 }
 

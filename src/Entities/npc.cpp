@@ -1,11 +1,10 @@
 #include "npc.h"
 
 
-void NPC::init(std::string ImageDrirectory, float w, float h, float x, float y)
+void NPC::init()
 {
-	size.x = w;
-	size.y = h;
-	image.load(ImageDrirectory, w, h, x, y);
+	size.x = 16;
+	size.y = 16;
 
 	Gravity = -0.5;
 	Friction = 0.1;
@@ -13,6 +12,7 @@ void NPC::init(std::string ImageDrirectory, float w, float h, float x, float y)
 
 	button.init('e');
 }
+
 void NPC::chat(StaticBody body, sf::RenderWindow* window)
 {
 	button.draw(position.x, position.y-size.y, window, overLap(body));
@@ -28,6 +28,14 @@ void NPC::follow(StaticBody body)
 	} else {
 		acceleration.x = 0;
 	}
+}
+
+void NPC::updateState()
+{
+	if (abs(acceleration.x) > 0)
+		state = walking;
+	else
+		state = idle;
 }
 
 void NPC::wander()
@@ -48,5 +56,14 @@ void NPC::wander()
 
 void NPC::draw(sf::RenderWindow* window)
 {
-	image.draw(position.x, position.y, window);
+	updateState();
+	switch (state)
+	{
+	case walking:
+		walk_anim.draw(position.x, position.y, window);
+		break;
+	default:
+		idle_anim.draw(position.x, position.y, window);
+		break;
+	};
 }
