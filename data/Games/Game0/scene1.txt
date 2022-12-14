@@ -1,12 +1,12 @@
 Scene_data {
-	width: 1000
+	width: 90
 	height: 0
 }
 
 create block 0 {
-	texture: Floor.png
-	width: 200
-	height: 64
+	texture: gon_scene/grassFront.png
+	width: 540
+	height: 120
 	x_pos: 0
 	y_pos: 100
 }
@@ -18,34 +18,35 @@ create player {
 }
 
 create slice 0 {
-	texture: beach.png
-	z_pos: 0.5
-	width: 100
-	height: 32
+	texture: gon_scene/sky.png
+	y_pos: 20
+	z_pos: 0
+	width: 540
+	height: 360
 }
 
 create slice 0 {
-	texture: beach.png
-	y_pos: 32
-	z_pos: 0.2
-	width: 100
-	height: 32
+	texture: gon_scene/mountains.png
+	y_pos: -25
+	z_pos: 0.99
+	width: 540
+	height: 126
 }
 
 create slice 0 {
-	texture: beach.png
-	y_pos: -32
-	z_pos: 0.3
-	width: 100
-	height: 32
+	texture: gon_scene/grassBack.png
+	y_pos: 55
+	z_pos: 0.9
+	width: 540
+	height: 118
 }
 
-create npc 0 {
-	walk_anim: OttiSpriteSheet.png 1 6 16 16 0 0
-	idle_anim: OttiSpriteSheet.png 1 6 16 16 0 0
-	width: 16
-	height: 16
-	chatter: yes
+create slice 0 {
+	texture: gon_scene/grassMiddle.png
+	y_pos: 110
+	z_pos: 0.7
+	width: 540
+	height: 180
 }
 
 create npc 1 {
