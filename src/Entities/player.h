@@ -9,7 +9,7 @@ class Player : public RigidBody
 {
 	StaticImage image;
 
-	float speed = 0.3;
+	float speed = 0.2;
 	float jumpStrength = 7;
 	bool jumpBuffer = false;
 

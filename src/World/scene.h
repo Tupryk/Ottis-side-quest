@@ -18,6 +18,7 @@ class Scene
 	Player player;
 	std::vector<Slice> slices;
 	std::vector<Block> blocks;
+	std::vector<StaticBody> invisibles;
 	std::vector<NPC> npcs;
 
 public:

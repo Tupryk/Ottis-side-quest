@@ -3,12 +3,19 @@ Scene_data {
 	height: 0
 }
 
-create block 0 {
+//create platform 0 {
 	texture: gon_scene/grassFront.png
 	width: 540
 	height: 120
 	x_pos: 0
 	y_pos: 100
+}
+
+create block 0 {
+	width: 540
+	height: 120
+	x_pos: 0
+	y_pos: 155
 }
 
 create player {
@@ -19,7 +26,7 @@ create player {
 
 create slice 0 {
 	texture: gon_scene/sky.png
-	y_pos: 20
+	y_pos: 50
 	z_pos: 0
 	width: 540
 	height: 360
@@ -28,7 +35,7 @@ create slice 0 {
 create slice 0 {
 	texture: gon_scene/mountains.png
 	y_pos: -25
-	z_pos: 0.99
+	z_pos: 0.9999
 	width: 540
 	height: 126
 }
@@ -36,7 +43,7 @@ create slice 0 {
 create slice 0 {
 	texture: gon_scene/grassBack.png
 	y_pos: 55
-	z_pos: 0.9
+	z_pos: 0.999
 	width: 540
 	height: 118
 }
@@ -44,13 +51,21 @@ create slice 0 {
 create slice 0 {
 	texture: gon_scene/grassMiddle.png
 	y_pos: 110
-	z_pos: 0.7
+	z_pos: 0.9
 	width: 540
 	height: 180
 }
 
+create slice 0 {
+	texture: gon_scene/grassFront.png
+	y_pos: 100
+	z_pos: 0
+	width: 540
+	height: 120
+}
+
 create npc 1 {
-	walk_anim: gon_scene/gonwalk.png 7 6 40 40 0 0
+	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0
 	idle_anim: gon_scene/gonwalk.png 1 6 40 40 0 40
 	width: 40
 	height: 40

@@ -12,7 +12,7 @@ Game::Game(unsigned int width, unsigned int height, std::string title, std::stri
 
 void Game::run()
 {
-	Scene scene(360, 240, "scene1.txt");
+	Scene scene(360, 240, "gon_scene.txt");
 	sf::RenderWindow window(sf::VideoMode(width, height), title);
 
 	sf::Image icon;
@@ -29,6 +29,8 @@ void Game::run()
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				window.close();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+				new (&scene) Scene(360, 240, "gon_scene.txt");
 		}
 		window.clear(sf::Color(200, 200, 255));
 

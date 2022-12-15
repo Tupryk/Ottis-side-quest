@@ -20,8 +20,8 @@ class NPC : public RigidBody
 public:
 	Animation walk_anim;
 	Animation idle_anim;
-	
-	float speed = 0.02;
+
+	float speed = 0.01;
 	bool chatter = false;
 	bool evil = false;
 

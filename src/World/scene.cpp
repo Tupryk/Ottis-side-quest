@@ -29,7 +29,7 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 				camera.init(window_w, window_h, scene_w, scene_h);
 			}
 			else if (attributes[0].compare("create") == 0) {
-				if (attributes[1].compare("block") == 0)
+				if (attributes[1].compare("platform") == 0)
 				{
 					std::string texture = "";
 					int width = -1;
@@ -183,6 +183,37 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 					new_npc.speed = speed;
 					npcs.push_back(new_npc);
 				}
+				else if (attributes[1].compare("block") == 0)
+				{
+					int width = -1;
+					int height = -1;
+					float x_pos = 0;
+					float y_pos = 0;
+					i++;
+					attributes = split(lines[i], ' ');
+					while (attributes.size() >= 1 && attributes[0] != "}")
+					{
+						if (attributes.size() >= 2)
+						{
+							if (attributes[0].compare("	width:") == 0)
+								width = std::stoi(attributes[1]);
+							if (attributes[0].compare("	height:") == 0)
+								height = std::stoi(attributes[1]);
+							if (attributes[0].compare("	x_pos:") == 0)
+								x_pos = std::stof(attributes[1]);
+							if (attributes[0].compare("	y_pos:") == 0)
+								y_pos = std::stof(attributes[1]);
+						}
+						i++;
+						attributes = split(lines[i], ' ');
+					}
+					StaticBody new_body;
+					new_body.position.x = x_pos;
+					new_body.position.y = y_pos;
+					new_body.size.x = width;
+					new_body.size.y = height;
+					invisibles.push_back(new_body);
+				}
 			}
 		}
 	}
@@ -191,6 +222,7 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 void Scene::render(sf::RenderWindow* window)
 {
 	std::vector<StaticBody> bodies(blocks.begin(), blocks.end());
+	bodies.insert(bodies.end(), invisibles.begin(), invisibles.end());
 
 	player.move();
 	player.update(bodies);
