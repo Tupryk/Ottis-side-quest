@@ -166,10 +166,16 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 								evil = true;
 							if (attributes[0].compare("	speed:") == 0)
 								speed = std::stof(attributes[1]);
-							if (attributes[0].compare("	walk_anim:") == 0)
+							if (attributes[0].compare("	walk_anim:") == 0) {
 								new_npc.walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-							if (attributes[0].compare("	idle_anim:") == 0)
+								if (std::stoi(attributes[8]))
+									new_npc.walk_anim.flip();
+							}
+							if (attributes[0].compare("	idle_anim:") == 0) {
 								new_npc.idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									new_npc.idle_anim.flip();
+							}
 						}
 						i++;
 						attributes = split(lines[i], ' ');

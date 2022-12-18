@@ -36,13 +36,19 @@ void NPC::updateState()
 		state = walking;
 	else
 		state = idle;
+
+	if ((velocity.x < 0 && !flipped) || (velocity.x > 0 && flipped)) {
+		walk_anim.flip();
+		idle_anim.flip();
+		flipped = !flipped;
+	}
 }
 
 void NPC::wander()
 {
 	sf::Time lastUpdate = Timer.getElapsedTime();
 	if (lastUpdate.asMilliseconds() >= 3000) {
-		int go = rand()%3;
+		int go = rand()%5;
 		if (go == 0) {
 			acceleration.x = speed;
 		} else if (go == 1) {
@@ -66,4 +72,5 @@ void NPC::draw(sf::RenderWindow* window)
 		idle_anim.draw(position.x, position.y, window);
 		break;
 	};
+	drawPoint(position.x, position.y, window, 2);
 }

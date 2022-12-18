@@ -65,10 +65,22 @@ create slice 0 {
 }
 
 create npc 1 {
-	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0
-	idle_anim: gon_scene/gonwalk.png 1 6 40 40 0 40
+	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
+	idle_anim: gon_scene/gonwalk.png 1 6 40 40 0 40 0
 	width: 40
 	height: 40
 	speed: 0.07
 	evil: yes
+	x_pos: 50
 }
+
+create npc 1 {
+	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
+	idle_anim: gon_scene/gonwalk.png 1 6 40 40 0 40 0
+	width: 40
+	height: 40
+	speed: 0.07
+	chatter: yes
+	x_pos: 0
+}
+

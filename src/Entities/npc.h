@@ -3,6 +3,7 @@
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
+#include "../Graphics/debug_utils.h"
 #include "player.h"
 #include "interaction.h"
 
@@ -14,6 +15,7 @@ class NPC : public RigidBody
 	sf::Clock Timer;
 	PressButton button;
 	NPCStates state = idle;
+	bool flipped = false;
 
 	void updateState();
 
