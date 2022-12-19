@@ -1,0 +1,52 @@
+conversation_data {
+	message_box: TextBox.png 212 64
+	x_pos: 74
+	y_pos: 10
+}
+
+using_face Otti {
+	normal: ottiface.png 64 64
+	aligned: left
+}
+using_face Gon {
+	normal: gon_scene/gonFace.png 64 64
+	aligned: right
+}
+
+start: message 1
+
+message 1 {
+	text: hi
+	face: Gon normal
+	next: options 1
+}
+
+options 1 {
+	option 1 {
+		text: hello
+		face: otti normal
+		next: message 2
+	}
+	option 2 {
+		text: hi
+		face: otti normal
+		next: message 1
+	}
+	option 3 {
+		text: how are you?
+		face: otti normal
+		next: message 3
+	}
+}
+
+message 2 {
+	text: bruh
+	face: Gon normal
+	next: end
+}
+
+message 3 {
+	text: goodbye
+	face: Gon normal
+	next: end
+}

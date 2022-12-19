@@ -2,11 +2,24 @@
 #define CHARACTER
 
 #include "../Physics/physics.h"
+#include "../Graphics/sprites.h"
 
 
-class Character : public RigidBody
+enum States { walking, running, jumping, falling, attacking, idle };
+
+struct Character : public RigidBody
 {
-	
+	Animation walk_anim;
+	Animation idle_anim;
+	Animation run_anim;
+	Animation jump_anim;
+	Animation fall_anim;
+	States state = idle;
+	float speed = 0.01;
+	bool flipped = false;
+
+	void updateState();
+	void draw(sf::RenderWindow* window);
 };
 
 

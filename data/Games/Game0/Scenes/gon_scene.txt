@@ -19,7 +19,11 @@ create block 0 {
 }
 
 create player {
-	texture: OttiSpriteSheet.png
+	walk_anim: OttiSpriteSheet.png 9 12 16 16 0 0 0
+	idle_anim: OttiSpriteSheet.png 2 2 16 16 0 0 0
+	run_anim: OttiSpriteSheet.png 12 12 16 16 0 16 0
+	jump_anim: OttiSpriteSheet.png 5 12 16 16 0 32 0
+	fall_anim: OttiSpriteSheet.png 4 12 16 16 80 32 0
 	width: 16
 	height: 16
 }
@@ -66,21 +70,11 @@ create slice 0 {
 
 create npc 1 {
 	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
-	idle_anim: gon_scene/gonwalk.png 1 6 40 40 0 40 0
+	idle_anim: gon_scene/gonwalk.png 2 2 40 40 0 120 0
 	width: 40
 	height: 40
 	speed: 0.07
-	evil: yes
-	x_pos: 50
-}
-
-create npc 1 {
-	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
-	idle_anim: gon_scene/gonwalk.png 1 6 40 40 0 40 0
-	width: 40
-	height: 40
-	speed: 0.07
-	chatter: yes
+	type: chatter
 	x_pos: 0
 }
 

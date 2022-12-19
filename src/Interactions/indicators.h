@@ -10,8 +10,9 @@ class PressButton
 	Animation staying;
 
 public:
+	bool buffer = false;
 	void init(char c = 'e');
-	void draw(float x, float y, sf::RenderWindow* window, bool draw);
+	void draw(float x, float y, sf::RenderWindow* window, bool draw = true);
 };
 
 

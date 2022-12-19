@@ -1,15 +1,15 @@
 #include "player.h"
 
 
-void Player::init(std::string ImageDrirectory, float w, float h, float x, float y)
+void Player::init()
 {
-	size.x = w;
-	size.y = h;
-	image.load(ImageDrirectory, w, h, x, y);
+	size.x = 16;
+	size.y = 16;
 
 	Gravity = -0.5;
 	Friction = 0.1;
 	AirResistance = 0.01;
+	speed = 0.2;
 }
 
 void Player::move()
@@ -38,9 +38,4 @@ void Player::move()
 	} else {
 		acceleration.y = 0;
 	}
-}
-
-void Player::draw(sf::RenderWindow* window)
-{
-	image.draw(position.x, position.y, window);
 }

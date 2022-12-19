@@ -11,11 +11,25 @@ void NPC::init()
 	AirResistance = 0.01;
 
 	button.init('e');
+	conversation.load("conversation_gon_1.txt");
 }
 
-void NPC::chat(StaticBody body, sf::RenderWindow* window)
+void NPC::chat(StaticBody body, Camera* camera, sf::RenderWindow* window)
 {
-	button.draw(position.x, position.y-size.y, window, overLap(body));
+	if (overLap(body)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !button.buffer) {
+			chatting = !chatting;
+			button.buffer = true;
+		} else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+			button.buffer = false;
+		}
+		if (!chatting)
+			button.draw(position.x, position.y-size.y, window);
+		else
+			conversation.draw(camera, window);
+	} else {
+		chatting = false;
+	}
 }
 
 void NPC::follow(StaticBody body)
@@ -30,47 +44,22 @@ void NPC::follow(StaticBody body)
 	}
 }
 
-void NPC::updateState()
-{
-	if (abs(acceleration.x) > 0)
-		state = walking;
-	else
-		state = idle;
-
-	if ((velocity.x < 0 && !flipped) || (velocity.x > 0 && flipped)) {
-		walk_anim.flip();
-		idle_anim.flip();
-		flipped = !flipped;
-	}
-}
-
 void NPC::wander()
 {
-	sf::Time lastUpdate = Timer.getElapsedTime();
-	if (lastUpdate.asMilliseconds() >= 3000) {
-		int go = rand()%5;
-		if (go == 0) {
-			acceleration.x = speed;
-		} else if (go == 1) {
-			acceleration.x = -speed;
-		} else {
-			acceleration.x = 0;
+	if (!chatting) {
+		sf::Time lastUpdate = Timer.getElapsedTime();
+		if (lastUpdate.asMilliseconds() >= 1000) {
+			int go = rand()%5;
+			if (go == 0) {
+				acceleration.x = speed;
+			} else if (go == 1) {
+				acceleration.x = -speed;
+			} else {
+				acceleration.x = 0;
+			}
+			Timer.restart();
 		}
-		Timer.restart();
+	} else {
+		acceleration.x = 0;
 	}
-}
-
-void NPC::draw(sf::RenderWindow* window)
-{
-	updateState();
-	switch (state)
-	{
-	case walking:
-		walk_anim.draw(position.x, position.y, window);
-		break;
-	default:
-		idle_anim.draw(position.x, position.y, window);
-		break;
-	};
-	drawPoint(position.x, position.y, window, 2);
 }

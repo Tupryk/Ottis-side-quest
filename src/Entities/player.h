@@ -3,20 +3,19 @@
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
+#include "character.h"
 
 
-class Player : public RigidBody
+class Player : public Character
 {
 	StaticImage image;
 
-	float speed = 0.2;
 	float jumpStrength = 7;
 	bool jumpBuffer = false;
 
 public:
-	void init(std::string ImageDrirectory, float w, float h, float x = 0, float y = 0);
+	void init();
 	void move();
-	void draw(sf::RenderWindow* window);
 };
 
 

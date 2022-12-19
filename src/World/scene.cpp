@@ -3,7 +3,7 @@
 
 Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_data)
 {
-	std::vector<std::string> lines = getFileLines("../data/Games/Game0/"+scene_data);
+	std::vector<std::string> lines = getFileLines("../data/Games/Game0/Scenes/"+scene_data);
 	for (int i = 0; i < lines.size(); i++)
 	{
 		std::vector<std::string> attributes = split(lines[i], ' ');
@@ -65,35 +65,49 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 				}
 				else if (attributes[1].compare("player") == 0)
 				{
-					std::string texture = "";
-					int width = -1;
-					int height = -1;
-					float x_pos = 0;
-					float y_pos = 0;
+					player.init();
 					i++;
 					attributes = split(lines[i], ' ');
 					while (attributes.size() >= 1 && attributes[0] != "}")
 					{
 						if (attributes.size() >= 2)
 						{
-							if (attributes[0].compare("	texture:") == 0)
-								texture = attributes[1];
 							if (attributes[0].compare("	width:") == 0)
-								width = std::stoi(attributes[1]);
+								player.size.x = std::stoi(attributes[1]);
 							if (attributes[0].compare("	height:") == 0)
-								height = std::stoi(attributes[1]);
+								player.size.y = std::stoi(attributes[1]);
 							if (attributes[0].compare("	x_pos:") == 0)
-								x_pos = std::stof(attributes[1]);
+								player.position.x = std::stof(attributes[1]);
 							if (attributes[0].compare("	y_pos:") == 0)
-								y_pos = std::stof(attributes[1]);
+								player.position.y = std::stof(attributes[1]);
+							if (attributes[0].compare("	walk_anim:") == 0) {
+								player.walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									player.walk_anim.flip();
+							}
+							if (attributes[0].compare("	idle_anim:") == 0) {
+								player.idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									player.idle_anim.flip();
+							}
+							if (attributes[0].compare("	run_anim:") == 0) {
+								player.run_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									player.run_anim.flip();
+							}
+							if (attributes[0].compare("	jump_anim:") == 0) {
+								player.jump_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									player.jump_anim.flip();
+							}
+							if (attributes[0].compare("	fall_anim:") == 0) {
+								player.fall_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									player.fall_anim.flip();
+							}
 						}
 						i++;
 						attributes = split(lines[i], ' ');
-					}
-					if (texture.compare("") != 0 && width >= 0 && height >= 0) {
-						player.init(texture, width, height);
-						player.position.x = x_pos;
-						player.position.y = y_pos;
 					}
 				}
 				else if (attributes[1].compare("slice") == 0)
@@ -136,36 +150,30 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 				{
 					NPC new_npc;
 					new_npc.init();
-					std::string texture = "";
-					int width = -1;
-					int height = -1;
-					float x_pos = 0;
-					float y_pos = 0;
-					float speed = 0.02;
-					bool chatter = false;
-					bool evil = false;
 					i++;
 					attributes = split(lines[i], ' ');
 					while (attributes.size() >= 1 && attributes[0] != "}")
 					{
 						if (attributes.size() >= 2)
 						{
-							if (attributes[0].compare("	texture:") == 0)
-								texture = attributes[1];
 							if (attributes[0].compare("	width:") == 0)
-								width = std::stoi(attributes[1]);
+								new_npc.size.x = std::stoi(attributes[1]);
 							if (attributes[0].compare("	height:") == 0)
-								height = std::stoi(attributes[1]);
+								new_npc.size.y = std::stoi(attributes[1]);
 							if (attributes[0].compare("	x_pos:") == 0)
-								x_pos = std::stof(attributes[1]);
+								new_npc.position.x = std::stof(attributes[1]);
 							if (attributes[0].compare("	y_pos:") == 0)
-								y_pos = std::stof(attributes[1]);
-							if (attributes[0].compare("	chatter:") == 0)
-								chatter = true;
-							if (attributes[0].compare("	evil:") == 0)
-								evil = true;
+								new_npc.position.y = std::stof(attributes[1]);
+							if (attributes[0].compare("	type:") == 0) {
+								if (attributes[1].compare("chatter") == 0)
+									new_npc.type = chatter;
+								else if (attributes[1].compare("enemy") == 0)
+									new_npc.type = enemy;
+								else
+									new_npc.type = walker;
+							}
 							if (attributes[0].compare("	speed:") == 0)
-								speed = std::stof(attributes[1]);
+								new_npc.speed = std::stof(attributes[1]);
 							if (attributes[0].compare("	walk_anim:") == 0) {
 								new_npc.walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
 								if (std::stoi(attributes[8]))
@@ -180,13 +188,6 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 						i++;
 						attributes = split(lines[i], ' ');
 					}
-					new_npc.size.x = width;
-					new_npc.size.y = height;
-					new_npc.position.x = x_pos;
-					new_npc.position.y = y_pos;
-					new_npc.chatter = chatter;
-					new_npc.evil = evil;
-					new_npc.speed = speed;
 					npcs.push_back(new_npc);
 				}
 				else if (attributes[1].compare("block") == 0)
@@ -233,7 +234,7 @@ void Scene::render(sf::RenderWindow* window)
 	player.move();
 	player.update(bodies);
 	for (int i = 0; i < npcs.size(); i++) {
-		if (npcs[i].evil)
+		if (npcs[i].type == enemy)
 			npcs[i].follow(player);
 		else
 			npcs[i].wander();
@@ -245,8 +246,8 @@ void Scene::render(sf::RenderWindow* window)
 	for (auto slice : slices)
 		slice.draw(camera, window);
 	for (int i = 0; i < npcs.size(); i++) {
-		if (npcs[i].chatter)
-			npcs[i].chat(player, window);
+		if (npcs[i].type == chatter)
+			npcs[i].chat(player, &camera, window);
 		npcs[i].draw(window);
 	}
 	for (auto block : blocks)
