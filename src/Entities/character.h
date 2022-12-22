@@ -14,8 +14,10 @@ struct Character : public RigidBody
 	Animation run_anim;
 	Animation jump_anim;
 	Animation fall_anim;
+	Animation attack_anim;
 	States state = idle;
 	float speed = 0.01;
+	int health = 100;
 	bool flipped = false;
 
 	void updateState();

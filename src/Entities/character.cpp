@@ -20,6 +20,7 @@ void Character::updateState()
 		run_anim.flip();
 		jump_anim.flip();
 		fall_anim.flip();
+		attack_anim.flip();
 		flipped = !flipped;
 	}
 }
@@ -40,6 +41,9 @@ void Character::draw(sf::RenderWindow* window)
 		break;
 	case falling:
 		fall_anim.draw(position.x, position.y, window);
+		break;
+	case attacking:
+		attack_anim.draw(position.x, position.y, window);
 		break;
 	default:
 		idle_anim.draw(position.x, position.y, window);

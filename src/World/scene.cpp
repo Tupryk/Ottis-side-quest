@@ -184,6 +184,11 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 								if (std::stoi(attributes[8]))
 									new_npc.idle_anim.flip();
 							}
+							if (attributes[0].compare("	attack_anim:") == 0) {
+								new_npc.idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									new_npc.idle_anim.flip();
+							}
 						}
 						i++;
 						attributes = split(lines[i], ' ');
@@ -234,11 +239,11 @@ void Scene::render(sf::RenderWindow* window)
 	player.move();
 	player.update(bodies);
 	for (int i = 0; i < npcs.size(); i++) {
+		npcs[i].update(bodies);
 		if (npcs[i].type == enemy)
-			npcs[i].follow(player);
+			npcs[i].attack(player);
 		else
 			npcs[i].wander();
-		npcs[i].update(bodies);
 	}
 
 	camera.draw(player.position.x, player.position.y, window);

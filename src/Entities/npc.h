@@ -26,6 +26,7 @@ public:
 	void chat(StaticBody body, Camera* camera, sf::RenderWindow* window);
 	void wander();
 	void follow(StaticBody body);
+	void attack(StaticBody body);
 };
 
 

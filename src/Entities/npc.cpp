@@ -44,6 +44,19 @@ void NPC::follow(StaticBody body)
 	}
 }
 
+void NPC::attack(StaticBody body)
+{
+	if (!overLap(body)) {
+		if (body.position.x > position.x)
+			acceleration.x = speed;
+		else
+			acceleration.x = -speed;
+	} else {
+		acceleration.x = 0;
+		state = attacking;
+	}
+}
+
 void NPC::wander()
 {
 	if (!chatting) {

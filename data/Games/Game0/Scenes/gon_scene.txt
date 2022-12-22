@@ -78,3 +78,15 @@ create npc 1 {
 	x_pos: 0
 }
 
+create npc 1 {
+	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
+	idle_anim: gon_scene/gonwalk.png 2 2 40 40 0 120 0
+	attack_anim: gon_scene/gonwalk.png 7 8 40 40 40 40 0
+	width: 40
+	height: 40
+	speed: 0.07
+	type: enemy
+	x_pos: 50
+}
+
+
