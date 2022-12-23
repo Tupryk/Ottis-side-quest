@@ -5,10 +5,12 @@ conversation_data {
 }
 
 using_face Otti {
+	name: otti
 	normal: ottiface.png 64 64
 	aligned: left
 }
 using_face Gon {
+	name: otti
 	normal: gon_scene/gonFace.png 64 64
 	aligned: right
 }

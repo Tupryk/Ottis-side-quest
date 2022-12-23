@@ -35,4 +35,7 @@ void Conversation::draw(Camera* camera, sf::RenderWindow* window)
 	float set_x = position.x+camera->position.x-(camera->window_w*0.2);
 	float set_y = position.y+camera->position.y-(camera->window_h*0.35);
 	text_box.draw(set_x, set_y, window);
+	set_x = position.x+camera->position.x-(camera->window_w*0.2);
+	set_y = position.y+camera->position.y-(camera->window_h*0.35);
+	faces[current_face].expresions[0].draw(set_x, set_y, window);
 }
