@@ -1,4 +1,4 @@
-// g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_2/include -o p -L/opt/homebrew/Cellar/sfml/2.5.1_2/lib -lsfml-graphics -lsfml-window -lsfml-system -std=c++11 app.cpp engineUI.cpp Physics/physics.cpp Entities/block.cpp Graphics/sprites.cpp World/game.cpp World/scene.cpp World/chapter.cpp Graphics/camera.cpp Entities/player.cpp Entities/background.cpp Entities/npc.cpp utils.cpp Interactions/indicators.cpp Entities/character.cpp Graphics/debug_utils.cpp Interactions/chat.cpp
+// g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_2/include -o p -L/opt/homebrew/Cellar/sfml/2.5.1_2/lib -lsfml-graphics -lsfml-window -lsfml-system -std=c++11 app.cpp engineUI.cpp Physics/physics.cpp Entities/block.cpp Graphics/sprites.cpp World/game.cpp World/scene.cpp World/chapter.cpp Graphics/camera.cpp Entities/player.cpp Entities/background.cpp Entities/npc.cpp utils.cpp Interactions/indicators.cpp Entities/character.cpp Graphics/debug_utils.cpp Interactions/chat.cpp Graphics/text.cpp
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "app.h"

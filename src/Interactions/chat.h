@@ -6,13 +6,14 @@
 #include <SFML/Graphics.hpp>
 #include "../Graphics/camera.h"
 #include "../Graphics/sprites.h"
+#include "../Graphics/text.h"
 #include "../utils.h"
 
 
 struct Face
 {
 	std::vector<StaticImage> expresions;
-	std::string name;
+	Text name;
 	bool aligned_right = true;
 };
 

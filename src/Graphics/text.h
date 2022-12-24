@@ -1,32 +1,40 @@
 #ifndef VISUAL_TEXT
 #define VISUAL_TEXT
 
+#include <string>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include "camera.h"
+#include "../Physics/physics.h"
 
-class Text
+
+class Text : StaticBody
 {
 	sf::Font font;
 	sf::Text text;
-	sf::Text cursor;
-	std::string text;
+
 public:
-	void init(std::string font_file);
-	void update(std::string);
-	void draw(float x, float y, sf::RenderWindow* window, float box_w = 0, float box_h = 0);
+	void init(std::string font_file, std::string content, float x = 0, float y = 0, float w = 0, float h = 0);
+	void update(std::string content);
+	void draw(Camera* camera, sf::RenderWindow* window);
 };
 
-class DynamicText
+class DynamicText : StaticBody
 {
 	sf::Font font;
 	sf::Text text;
-	sf::Text cursor;
 	sf::Clock SpellingTimer;
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
-	std::string text;
+	std::string content;
+	float speed;
+	int letter_index = 0;
+
 public:
-	void init(std::string font_file);
-	void update(std::string);
-	void draw(float x, float y, sf::RenderWindow* window, float box_w = 0, float box_h = 0);
+	void init(std::string font_file, std::string content, std::string sound_file, float speed, float x = 0, float y = 0, float w = 0, float h = 0);
+	void update(std::string content);
+	void reset();
+	void draw(Camera* camera, sf::RenderWindow* window);
 };
 
 
