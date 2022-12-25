@@ -20,9 +20,9 @@ void Text::update(std::string content) {
 	text.setString(content);
 }
 
-void Text::draw(Camera* camera, sf::RenderWindow* window)
+void Text::draw(float x, float y, sf::RenderWindow* window)
 {
-    text.setPosition(camera->position.x + position.x - (camera->window_w*0.25), camera->position.y + position.y - (camera->window_h*0.4));
+    text.setPosition(std::round(x), std::round(y));
     text.setFont(font);
     window->draw(text);
 }
@@ -45,16 +45,19 @@ void DynamicText::init(std::string font_file, std::string content, std::string s
     size.y = h;
 }
 
-void DynamicText::update(std::string content) {
+void DynamicText::update(std::string content, std::string sound_file) {
+	if (sound_file != "")
+		buffer.loadFromFile("../data/Games/Game0/Assets/Snd/" + sound_file);
 	this->content = content;
 }
 void DynamicText::reset() {
 	letter_index = 0;
 }
 
-void DynamicText::draw(Camera* camera, sf::RenderWindow* window)
+void DynamicText::draw(float x, float y, sf::RenderWindow* window)
 {
 	text.setFont(font);
+	sound.setBuffer(buffer);
 	if (letter_index < content.length())
     {
 		sf::Time lastUpdate = spelling_timer.getElapsedTime();
@@ -68,6 +71,6 @@ void DynamicText::draw(Camera* camera, sf::RenderWindow* window)
     } else {
     	text.setString(content);
     }
-	text.setPosition(camera->position.x + position.x - (camera->window_w*0.2), camera->position.y + position.y - (camera->window_h*0.35));
+	text.setPosition(std::round(x), std::round(y));
     window->draw(text);
 }

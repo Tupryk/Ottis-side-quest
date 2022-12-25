@@ -1,4 +1,5 @@
 #include "npc.h"
+#include <iostream>
 
 
 void NPC::init()
@@ -16,6 +17,7 @@ void NPC::init()
 
 void NPC::chat(StaticBody body, Camera* camera, sf::RenderWindow* window)
 {
+	conversation.chatting = &chatting;
 	if (overLap(body)) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !button.buffer) {
 			chatting = !chatting;

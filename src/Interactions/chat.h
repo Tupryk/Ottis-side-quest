@@ -13,6 +13,7 @@
 struct Face
 {
 	std::vector<StaticImage> expresions;
+	std::string sound = "";
 	Text name;
 	bool aligned_right = true;
 };
@@ -20,9 +21,24 @@ struct Face
 struct Message
 {
 	std::string text;
-	Text character_name;
-	StaticImage face;
-	Message* next;
+	int face = 0;
+	int expression = 0;
+	int next = -1;
+};
+
+class Cursor
+{
+	Text icon;
+	int index = 0;
+	int max_index = 0;
+	bool scroll_buffer = false;
+
+	void update();
+
+public:
+	void init(std::string font_file, int max_index);
+	void reset();
+	void draw(Camera* camera, sf::RenderWindow* window);
 };
 
 class Conversation
@@ -31,10 +47,14 @@ class Conversation
 	std::vector<Message> messages;
 	DynamicText text;
 	StaticImage text_box;
-	vec2d position;
+	Cursor cursor;
 	int current_message = 0;
+	bool next_buffer = false;
+
+	void update();
 
 public:
+	bool* chatting;
 	void load(std::string chat_data);
 	void draw(Camera* camera, sf::RenderWindow* window);
 };

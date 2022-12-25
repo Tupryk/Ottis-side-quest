@@ -1,6 +1,7 @@
 #ifndef VISUAL_TEXT
 #define VISUAL_TEXT
 
+#include <cmath>
 #include <string>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -16,7 +17,7 @@ class Text : StaticBody
 public:
 	void init(std::string font_file, std::string content, float x = 0, float y = 0, float w = 0, float h = 0);
 	void update(std::string content);
-	void draw(Camera* camera, sf::RenderWindow* window);
+	void draw(float x, float y, sf::RenderWindow* window);
 };
 
 class DynamicText : StaticBody
@@ -32,9 +33,9 @@ class DynamicText : StaticBody
 
 public:
 	void init(std::string font_file, std::string content, std::string sound_file, float speed, float x = 0, float y = 0, float w = 0, float h = 0);
-	void update(std::string content);
+	void update(std::string content, std::string sound_file = "");
 	void reset();
-	void draw(Camera* camera, sf::RenderWindow* window);
+	void draw(float x, float y, sf::RenderWindow* window);
 };
 
 
