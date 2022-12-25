@@ -33,8 +33,17 @@ void Conversation::load(std::string chat_data)
 	new_exp.load("gon_scene/gonFace.png", 64, 64);
 	new_exp.flip();
 	new_face.expresions.push_back(new_exp);
-	new_face.name.init("pixeltupryk.ttf", "Hello how are udshauidah", 0, 0);
+	new_face.name.init("pixeltupryk.ttf", "Gon", 0, 0);
 	faces.push_back(new_face);
+
+	Message new_mess;
+	new_mess.text = "\"You are gay.\"";
+	new_mess.character_name = (faces[0].name);
+	new_mess.face = (faces[0].expresions[0]);
+	new_mess.next = NULL;
+	messages.push_back(new_mess);
+
+	text.init("pixeltupryk.ttf", new_mess.text, "bruh.wav", 0.2);
 }
 
 void Conversation::draw(Camera* camera, sf::RenderWindow* window)
@@ -42,17 +51,12 @@ void Conversation::draw(Camera* camera, sf::RenderWindow* window)
 	float set_x = position.x+camera->position.x-(camera->window_w*0.2);
 	float set_y = position.y+camera->position.y-(camera->window_h*0.35);
 	text_box.draw(set_x, set_y, window);
+
 	set_x = position.x+camera->position.x-(camera->window_w*0.2)+140;
 	set_y = position.y+camera->position.y-(camera->window_h*0.35);
-	faces[current_face].expresions[0].draw(set_x, set_y, window);
-	//faces[current_face].name.init("pixeltupryk.ttf", "Hello how are udshauidah", 0, 0);
-	//faces[current_face].name.draw(camera, window);
+	messages[current_message].face.draw(set_x, set_y, window);
+	
+	messages[current_message].character_name.draw(camera, window);
 
-	Face new_face;
-	StaticImage new_exp;
-	new_exp.load("gon_scene/gonFace.png", 64, 64);
-	new_exp.flip();
-	new_face.expresions.push_back(new_exp);
-	new_face.name.init("pixeltupryk.ttf", "Gon", 0, 0);
-	new_face.name.draw(camera, window);
+	text.draw(camera, window);
 }

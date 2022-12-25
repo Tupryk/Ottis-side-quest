@@ -20,7 +20,8 @@ struct Face
 struct Message
 {
 	std::string text;
-	Face* face;
+	Text character_name;
+	StaticImage face;
 	Message* next;
 };
 
@@ -28,10 +29,11 @@ class Conversation
 {
 	std::vector<Face> faces;
 	std::vector<Message> messages;
+	DynamicText text;
 	StaticImage text_box;
 	vec2d position;
-	int current_face = 0;
 	int current_message = 0;
+
 public:
 	void load(std::string chat_data);
 	void draw(Camera* camera, sf::RenderWindow* window);

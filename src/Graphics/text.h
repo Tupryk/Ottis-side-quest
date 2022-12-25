@@ -23,7 +23,7 @@ class DynamicText : StaticBody
 {
 	sf::Font font;
 	sf::Text text;
-	sf::Clock SpellingTimer;
+	sf::Clock spelling_timer;
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
 	std::string content;
