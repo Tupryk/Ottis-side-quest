@@ -4,10 +4,10 @@
 void Cursor::init(std::string font_file, int max_index)
 {
 	this->max_index = max_index;
-	icon.init("pixeltupryk.ttf", ">");
+	icon.init(">", "pixeltupryk.ttf");
 }
 
-void Cursor::reset() { index = 0; };
+void Cursor::reset(int max_index) { index = 0; this->max_index = max_index; };
 
 void Cursor::update()
 {
@@ -59,14 +59,17 @@ void Conversation::load(std::string chat_data)
 			}
 		}
 	}
-	cursor.init("pixeltupryk.ttf", 2);
+	initial_messages = {0};
+	current_messages = initial_messages;
+
+	cursor.init("pixeltupryk.ttf", current_messages.size()-1);
 
 	StaticImage new_exp;
 	new_exp.load("ottiface.png", 64, 64);
 
 	Face ne_face;
 	ne_face.expresions.push_back(new_exp);
-	ne_face.name.init("pixeltupryk.ttf", "Otti", 0, 0);
+	ne_face.name.init("Otti", "pixeltupryk.ttf");
 	ne_face.aligned_right = false;
 	ne_face.sound = "nice_music.ogg";
 	faces.push_back(ne_face);
@@ -76,7 +79,7 @@ void Conversation::load(std::string chat_data)
 
 	Face new_face;
 	new_face.expresions.push_back(new_exp);
-	new_face.name.init("pixeltupryk.ttf", "Gon", 0, 0);
+	new_face.name.init("Gon", "pixeltupryk.ttf");
 	new_face.sound = "bruh.wav";
 	faces.push_back(new_face);
 
@@ -84,28 +87,33 @@ void Conversation::load(std::string chat_data)
 	new_mess.text = "jadioaiojdiojasiojdiojasiojdiojasio.";
 	new_mess.face = 1;
 	new_mess.expression = 0;
-	new_mess.next = 1;
+	new_mess.options = {1, 0};
 	messages.push_back(new_mess);
 
 	Message new_new_mess;
 	new_new_mess.text = "Helkidoajdid ajdjoaod gay.";
 	new_new_mess.face = 0;
 	new_new_mess.expression = 0;
-	new_new_mess.next = -1;
+	new_mess.options = {};
 	messages.push_back(new_new_mess);
 
-	text.init("pixeltupryk.ttf", new_mess.text, faces[messages[current_message].face].sound, 0.2);
+	text.init(new_mess.text, "pixeltupryk.ttf", faces[messages[current_messages[0]].face].sound, 0.2);
+	option_disp.init("", "pixeltupryk.ttf");
 }
 
 void Conversation::update()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !next_buffer) {
-		next_buffer = true;
-		cursor.reset();
-		if (messages[current_message].next < 0) { *chatting = false; current_message = 0; }
-		else current_message = messages[current_message].next;
-		text.update(messages[current_message].text, faces[messages[current_message].face].sound);
+		if (messages[current_messages[cursor.index]].options.empty()) {
+			*chatting = false;
+			current_messages = initial_messages;
+		} else {
+			current_messages = messages[current_messages[cursor.index]].options;
+		}
+		text.update(messages[current_messages[0]].text, faces[messages[current_messages[0]].face].sound);
 		text.reset();
+		cursor.reset(current_messages.size()-1);
+		next_buffer = true;
 	} else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && next_buffer) {
 		next_buffer = false;
 	}
@@ -118,21 +126,30 @@ void Conversation::draw(Camera* camera, sf::RenderWindow* window)
 	text_box.draw(set_x, set_y, window);
 
 	// Faces
-	if (faces[messages[current_message].face].aligned_right) set_x += (camera->window_h*0.6); else set_x -= (camera->window_h*0.6);
-	faces[messages[current_message].face].expresions[messages[current_message].expression].draw(set_x, set_y, window);
+	if (faces[messages[current_messages[cursor.index]].face].aligned_right)
+		set_x += (camera->window_h*0.6); else set_x -= (camera->window_h*0.6);
+	faces[messages[current_messages[cursor.index]].face].expresions[messages[current_messages[cursor.index]].expression].draw(set_x, set_y, window);
 	
 	// Names
 	set_x = camera->position.x - (camera->window_w*0.25);
 	set_y = camera->position.y - (camera->window_h*0.4);
-	faces[messages[current_message].face].name.draw(set_x, set_y, window);
+	faces[messages[current_messages[cursor.index]].face].name.draw(set_x, set_y, window);
 
 	// Main text
 	set_x = camera->position.x - (camera->window_w*0.2);
 	set_y = camera->position.y - (camera->window_h*0.35);
-	text.draw(set_x, set_y, window);
 
-	// Cursor
-	cursor.draw(camera, window);
+	if (current_messages.size() > 1) {
+		for (int i = 0; i < current_messages.size(); i++) {
+			option_disp.update(messages[current_messages[i]].text);
+			option_disp.draw(set_x, set_y, window);
+			set_y += camera->window_w*0.03;
+		}
+		// Cursor
+		cursor.draw(camera, window);
+	} else {
+		text.draw(set_x, set_y, window);
+	}
 
 	update();
 }

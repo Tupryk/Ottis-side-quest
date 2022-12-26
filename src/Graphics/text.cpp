@@ -1,7 +1,7 @@
 #include "text.h"
 
 
-void Text::init(std::string font_file, std::string content, float x, float y, float w, float h)
+void Text::init(std::string content, std::string font_file, int line_length)
 {
     font.loadFromFile("../data/Games/Game0/Assets/Fonts/" + font_file);
 	text.setFont(font);
@@ -10,10 +10,7 @@ void Text::init(std::string font_file, std::string content, float x, float y, fl
     text.setCharacterSize(48);
     text.scale(0.1f, 0.1f);
 
-    position.x = x;
-    position.y = y;
-    size.x = w;
-    size.y = h;
+    this->line_length = line_length;
 }
 
 void Text::update(std::string content) {
@@ -27,7 +24,7 @@ void Text::draw(float x, float y, sf::RenderWindow* window)
     window->draw(text);
 }
 
-void DynamicText::init(std::string font_file, std::string content, std::string sound_file, float speed, float x, float y, float w, float h)
+void DynamicText::init(std::string content, std::string font_file, std::string sound_file, float speed, int line_length)
 {
     font.loadFromFile("../data/Games/Game0/Assets/Fonts/" + font_file);
 	text.setFont(font);
@@ -39,10 +36,7 @@ void DynamicText::init(std::string font_file, std::string content, std::string s
 	sound.setBuffer(buffer);
 
     this->content = content;
-    position.x = x;
-    position.y = y;
-    size.x = w;
-    size.y = h;
+    this->line_length = line_length;
 }
 
 void DynamicText::update(std::string content, std::string sound_file) {

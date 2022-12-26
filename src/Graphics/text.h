@@ -9,13 +9,14 @@
 #include "../Physics/physics.h"
 
 
-class Text : StaticBody
+class Text
 {
 	sf::Font font;
 	sf::Text text;
+	int line_length = 0;
 
 public:
-	void init(std::string font_file, std::string content, float x = 0, float y = 0, float w = 0, float h = 0);
+	void init(std::string content, std::string font_file, int line_length = 0);
 	void update(std::string content);
 	void draw(float x, float y, sf::RenderWindow* window);
 };
@@ -28,11 +29,12 @@ class DynamicText : StaticBody
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
 	std::string content;
-	float speed;
+	int line_length = 0;
 	int letter_index = 0;
+	float speed;
 
 public:
-	void init(std::string font_file, std::string content, std::string sound_file, float speed, float x = 0, float y = 0, float w = 0, float h = 0);
+	void init(std::string content, std::string font_file, std::string sound_file, float speed, int line_length = 0);
 	void update(std::string content, std::string sound_file = "");
 	void reset();
 	void draw(float x, float y, sf::RenderWindow* window);
