@@ -7,6 +7,7 @@
 #include "../Graphics/camera.h"
 #include "../Entities/player.h"
 #include "../Entities/block.h"
+#include "../Entities/items.h"
 #include "../Entities/background.h"
 #include "../Entities/npc.h"
 #include "../utils.h"
@@ -16,6 +17,7 @@ class Scene
 {
 	Camera camera;
 	Player player;
+	//std::vector<Item> items;
 	std::vector<Slice> slices;
 	std::vector<Block> blocks;
 	std::vector<StaticBody> invisibles;

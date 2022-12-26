@@ -17,7 +17,7 @@ bool StaticBody::overLapOffset(StaticBody body, float x, float y, float w, float
 			&& position.y - (size.y*0.5) - y <= body.position.y + (body.size.y*0.5));
 }
 
-void RigidBody::update(std::vector<StaticBody> bodies)
+void RigidBody::update(std::vector<StaticBody> bodies, float max_z)
 {
 	// Update velocity
 	{
@@ -41,7 +41,11 @@ void RigidBody::update(std::vector<StaticBody> bodies)
 		}
 	}
 
-	// Repeat for y-axis
+	// Repeat for z- and y-axis
+	position.z = position.z + velocity.z + ( 0.5 * acceleration.z );
+	if (position.z > max_z) { position.z = max_z; velocity.z = 0; };
+	if (position.z < -max_z) { position.z = -max_z; velocity.z = 0; };
+
 	position.y = position.y + velocity.y + ( 0.5 * acceleration.y ) - ( 0.5 * Gravity );
 	for (auto body : bodies) {
 		if (overLap(body)) {

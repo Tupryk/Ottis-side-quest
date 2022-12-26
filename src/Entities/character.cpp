@@ -7,9 +7,9 @@ void Character::updateState()
 		state = jumping;
 	else if (velocity.y > 0)
 		state = falling;
-	else if (abs(acceleration.x) == speed)
+	else if (abs(acceleration.x) == speed || abs(acceleration.z) == (speed*2))
 		state = walking;
-	else if (abs(acceleration.x) == speed*2)
+	else if (abs(acceleration.x) == speed*2 || abs(acceleration.z) == (speed*4))
 		state = running;
 	else
 		state = idle;
@@ -27,26 +27,28 @@ void Character::updateState()
 
 void Character::draw(sf::RenderWindow* window)
 {
+	float relative_x = position.x;
+	float relative_y = position.y+position.z;
 	updateState();
 	switch (state)
 	{
 	case walking:
-		walk_anim.draw(position.x, position.y, window);
+		walk_anim.draw(relative_x, relative_y, window);
 		break;
 	case running:
-		run_anim.draw(position.x, position.y, window);
+		run_anim.draw(relative_x, relative_y, window);
 		break;
 	case jumping:
-		jump_anim.draw(position.x, position.y, window);
+		jump_anim.draw(relative_x, relative_y, window);
 		break;
 	case falling:
-		fall_anim.draw(position.x, position.y, window);
+		fall_anim.draw(relative_x, relative_y, window);
 		break;
 	case attacking:
-		attack_anim.draw(position.x, position.y, window);
+		attack_anim.draw(relative_x, relative_y, window);
 		break;
 	default:
-		idle_anim.draw(position.x, position.y, window);
+		idle_anim.draw(relative_x, relative_y, window);
 		break;
 	};
 }

@@ -34,7 +34,7 @@ struct RigidBody : StaticBody
 	float Bounciness = 0;
 	bool onFloor = false;
 
-	void update(std::vector<StaticBody> bodies = {});
+	void update(std::vector<StaticBody> bodies = {}, float max_z = 10);
 };
 
 #endif

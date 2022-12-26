@@ -89,4 +89,10 @@ create npc 1 {
 	x_pos: 50
 }
 
-
+create item 1 {
+	texture: Ball.png
+	y_pos: 0
+	x_pos: 0
+	width: 2
+	height: 2
+}

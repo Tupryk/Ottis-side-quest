@@ -1,5 +1,4 @@
 #include "npc.h"
-#include <iostream>
 
 
 void NPC::init()

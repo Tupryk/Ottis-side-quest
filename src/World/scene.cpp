@@ -226,6 +226,37 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 					new_body.size.y = height;
 					invisibles.push_back(new_body);
 				}
+				else if (attributes[1].compare("item") == 0)
+				{
+					std::string texture = "";
+					int width = -1;
+					int height = -1;
+					float x_pos = 0;
+					float y_pos = 0;
+					float z_pos = 0;
+					i++;
+					attributes = split(lines[i], ' ');
+					while (attributes.size() >= 1 && attributes[0] != "}")
+					{
+						if (attributes.size() >= 2)
+						{
+							if (attributes[0].compare("	texture:") == 0)
+								texture = attributes[1];
+							if (attributes[0].compare("	width:") == 0)
+								width = std::stoi(attributes[1]);
+							if (attributes[0].compare("	height:") == 0)
+								height = std::stoi(attributes[1]);
+							if (attributes[0].compare("	x_pos:") == 0)
+								x_pos = std::stof(attributes[1]);
+							if (attributes[0].compare("	y_pos:") == 0)
+								y_pos = std::stof(attributes[1]);
+						}
+						i++;
+						attributes = split(lines[i], ' ');
+					}
+					Item new_item(texture, width, height, x_pos, y_pos);
+					//items.push_back(new_item);
+				}
 			}
 		}
 	}
@@ -250,6 +281,7 @@ void Scene::render(sf::RenderWindow* window)
 
 	for (auto slice : slices)
 		slice.draw(camera, window);
+
 	for (int i = 0; i < npcs.size(); i++) {
 		if (npcs[i].type == chatter)
 			npcs[i].chat(player, &camera, window);
@@ -258,4 +290,9 @@ void Scene::render(sf::RenderWindow* window)
 	for (auto block : blocks)
 		block.draw(window);
 	player.draw(window);
+/*
+	for (int i = 0; i < items.size(); i++) {
+		items[i].update(bodies);
+		items[i].draw(window);
+	}*/
 }
