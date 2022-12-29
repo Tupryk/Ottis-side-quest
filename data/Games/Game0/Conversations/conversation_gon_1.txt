@@ -1,7 +1,5 @@
 conversation_data {
 	message_box: TextBox.png 212 64
-	x_pos: 74
-	y_pos: 10
 }
 
 using_face Otti {
@@ -18,37 +16,13 @@ using_face Gon {
 start: message 1
 
 message 1 {
-	text: hi
+	text: aisjdosajiodjioasjijod?
 	face: Gon normal
-	next: options 1
-}
-
-options 1 {
-	option 1 {
-		text: hello
-		face: otti normal
-		next: message 2
-	}
-	option 2 {
-		text: hi
-		face: otti normal
-		next: message 1
-	}
-	option 3 {
-		text: how are you?
-		face: otti normal
-		next: message 3
-	}
+	next: 1 2
 }
 
 message 2 {
-	text: bruh
-	face: Gon normal
-	next: end
-}
-
-message 3 {
-	text: goodbye
-	face: Gon normal
-	next: end
+	text: asikdoasoidasiok sa dajsoi dasdo.
+	face: Otti normal
+	next: -1
 }
