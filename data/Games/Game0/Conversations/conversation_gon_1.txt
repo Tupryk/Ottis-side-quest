@@ -3,22 +3,26 @@ conversation_data {
 }
 
 using_face Otti {
-	name: otti
+	name: Otti
 	normal: ottiface.png 64 64
 	aligned: left
+	sound: nice_music.ogg
+	font: pixeltupryk.ttf
 }
 using_face Gon {
-	name: otti
+	name: Gon
 	normal: gon_scene/gonFace.png 64 64
 	aligned: right
+	sound: bruh.wav
+	font: pixeltupryk.ttf
 }
 
-start: message 1
+start: message 0
 
-message 1 {
+message 0 {
 	text: aisjdosajiodjioasjijod?
 	face: Gon normal
-	next: 1 2
+	next: 0 1
 }
 
 message 2 {

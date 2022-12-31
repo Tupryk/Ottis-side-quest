@@ -38,27 +38,6 @@ void Cursor::draw(Camera* camera, sf::RenderWindow* window)
 
 void Conversation::load(std::string chat_data)
 {
-	std::vector<std::string> lines = getFileLines("../data/Games/Game0/Conversations/"+chat_data);
-	for (int i = 0; i < lines.size(); i++)
-	{
-		std::vector<std::string> attributes = split(lines[i], ' ');
-		if (attributes.size() >= 2)
-		{
-			if (attributes[0].compare("conversation_data") == 0) {
-				attributes = split(lines[i], ' ');
-				while (attributes.size() >= 1 && attributes[0] != "}")
-				{
-					if (attributes.size() >= 2)
-					{
-						if (attributes[0].compare("	message_box:") == 0)
-							text_box.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]));
-					}
-					i++;
-					attributes = split(lines[i], ' ');
-				}
-			}
-		}
-	}
 	initial_messages = {0};
 	current_messages = initial_messages;
 
@@ -99,6 +78,76 @@ void Conversation::load(std::string chat_data)
 
 	text.init(new_mess.text, "pixeltupryk.ttf", faces[messages[current_messages[0]].face].sound, 0.2);
 	option_disp.init("", "pixeltupryk.ttf");
+
+	std::vector<std::string> lines = getFileLines("../data/Games/Game0/Conversations/"+chat_data);
+	for (int i = 0; i < lines.size(); i++)
+	{
+		std::vector<std::string> attributes = split(lines[i], ' ');
+		if (attributes.size() >= 2)
+		{
+			if (attributes[0].compare("conversation_data") == 0) {
+				attributes = split(lines[i], ' ');
+				while (attributes.size() >= 1 && attributes[0] != "}")
+				{
+					if (attributes.size() >= 2)
+					{
+						if (attributes[0].compare("	message_box:") == 0)
+							text_box.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]));
+					}
+					i++;
+					attributes = split(lines[i], ' ');
+				}
+			}
+			if (attributes[0].compare("message") == 0) {
+				Message new_mess;
+				attributes = split(lines[i], ' ');
+				while (attributes.size() >= 1 && attributes[0] != "}")
+				{
+					if (attributes.size() >= 2)
+					{
+						if (attributes[0].compare("	text:") == 0)
+							new_mess.text = lines;
+						if (attributes[0].compare("	next:") == 0) {
+							for (int j = 0; j < attributes.size() j++)
+								new_mess.options.push_back(attributes[i]);
+						}
+					}
+					i++;
+					attributes = split(lines[i], ' ');
+				}
+				new_mess.face = 1;
+				new_mess.expression = 0;
+				messages.push_back(new_mess);
+			}
+			if (attributes[0].compare("using_face") == 0) {
+				Face new_face;
+				std::string name;
+				std::string font;
+				attributes = split(lines[i], ' ');
+				while (attributes.size() >= 1 && attributes[0] != "}")
+				{
+					if (attributes.size() >= 2)
+					{
+						if (attributes[0].compare("	sound:") == 0)
+							new_face.sound = attributes[1];
+						else if (attributes[0].compare("	font:") == 0)
+							font = attributes[1];
+						else if (attributes[0].compare("	name:") == 0)
+							name = attributes[1];
+						else if (attributes[0].compare("	aligned:") == 0) {
+							if (attributes[1].compare("left"))
+						}
+					}
+					i++;
+					attributes = split(lines[i], ' ');
+				}
+				new_face.expresions.push_back(new_exp);
+				new_face.name.init(name, font);
+				ne_face.aligned_right = false;
+				faces.push_back(new_face);
+			}
+		}
+	}
 }
 
 void Conversation::update()
