@@ -136,6 +136,7 @@ void Conversation::load(std::string chat_data)
 							name = attributes[1];
 						else if (attributes[0].compare("	aligned:") == 0) {
 							if (attributes[1].compare("left"))
+								ne_face.aligned_right = false;
 						}
 					}
 					i++;
@@ -143,7 +144,6 @@ void Conversation::load(std::string chat_data)
 				}
 				new_face.expresions.push_back(new_exp);
 				new_face.name.init(name, font);
-				ne_face.aligned_right = false;
 				faces.push_back(new_face);
 			}
 		}
