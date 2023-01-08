@@ -255,7 +255,7 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 						attributes = split(lines[i], ' ');
 					}
 					Item new_item(texture, width, height, x_pos, y_pos);
-					//items.push_back(new_item);
+					items.push_back(new_item);
 				}
 			}
 		}
@@ -290,9 +290,9 @@ void Scene::render(sf::RenderWindow* window)
 	for (auto block : blocks)
 		block.draw(window);
 	player.draw(window);
-/*
+
 	for (int i = 0; i < items.size(); i++) {
 		items[i].update(bodies);
 		items[i].draw(window);
-	}*/
+	}
 }

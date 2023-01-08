@@ -17,7 +17,7 @@ class Scene
 {
 	Camera camera;
 	Player player;
-	//std::vector<Item> items;
+	std::vector<Item> items;
 	std::vector<Slice> slices;
 	std::vector<Block> blocks;
 	std::vector<StaticBody> invisibles;

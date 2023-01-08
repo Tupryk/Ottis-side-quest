@@ -100,24 +100,26 @@ void Conversation::load(std::string chat_data)
 			}
 			if (attributes[0].compare("message") == 0) {
 				Message new_mess;
+				messages.push_back(new_mess);
 				attributes = split(lines[i], ' ');
 				while (attributes.size() >= 1 && attributes[0] != "}")
 				{
 					if (attributes.size() >= 2)
 					{
-						if (attributes[0].compare("	text:") == 0)
-							new_mess.text = lines;
+						if (attributes[0].compare("	text:") == 0) {
+							//messages[messages.size()-1].text = lines;
+						}
 						if (attributes[0].compare("	next:") == 0) {
-							for (int j = 0; j < attributes.size() j++)
-								new_mess.options.push_back(attributes[i]);
+							for (int j = 0; j < attributes.size(); j++){
+								//messages[messages.size()-1].options.push_back(attributes[i]);
+							}
 						}
 					}
 					i++;
 					attributes = split(lines[i], ' ');
 				}
-				new_mess.face = 1;
-				new_mess.expression = 0;
-				messages.push_back(new_mess);
+				messages[messages.size()-1].face = 1;
+				messages[messages.size()-1].expression = 0;
 			}
 			if (attributes[0].compare("using_face") == 0) {
 				Face new_face;
