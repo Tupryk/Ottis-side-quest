@@ -293,6 +293,7 @@ void Scene::render(sf::RenderWindow* window)
 
 	for (int i = 0; i < items.size(); i++) {
 		items[i].update(bodies);
+		items[i].getPicket(&player);
 		items[i].draw(window);
 	}
 }

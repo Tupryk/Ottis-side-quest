@@ -23,6 +23,7 @@ struct Character : public RigidBody
 
 	void updateState();
 	void draw(sf::RenderWindow* window);
+	vec3d getHoldingPos();
 };
 
 
