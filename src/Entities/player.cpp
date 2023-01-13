@@ -53,9 +53,3 @@ void Player::move()
 		acceleration.y = 0;
 	}
 }
-
-vec3d Character::getHoldingPos()
-{
-	vec3d pos = position;
-	return pos;
-}

@@ -105,6 +105,11 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 								if (std::stoi(attributes[8]))
 									player.fall_anim.flip();
 							}
+							if (attributes[0].compare("	hurt_anim:") == 0) {
+								player.hurt_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								if (std::stoi(attributes[8]))
+									player.hurt_anim.flip();
+							}
 						}
 						i++;
 						attributes = split(lines[i], ' ');
@@ -272,7 +277,7 @@ void Scene::render(sf::RenderWindow* window)
 	for (int i = 0; i < npcs.size(); i++) {
 		npcs[i].update(bodies);
 		if (npcs[i].type == enemy)
-			npcs[i].attack(player);
+			npcs[i].attack(&player);
 		else
 			npcs[i].wander();
 	}

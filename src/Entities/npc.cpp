@@ -45,16 +45,24 @@ void NPC::follow(StaticBody body)
 	}
 }
 
-void NPC::attack(StaticBody body)
+void NPC::attack(Character* character)
 {
-	if (!overLap(body)) {
-		if (body.position.x > position.x)
+	if (!overLap(*character)) {
+		if (character->position.x > position.x)
 			acceleration.x = speed;
 		else
 			acceleration.x = -speed;
 	} else {
 		acceleration.x = 0;
 		state = attacking;
+		std::cout << "going to hurt" << std::endl;
+		std::cout << "attack index " << attack_anim.frameIndex << std::endl;
+		std::cout << "attack frames " << attack_anim.frames << std::endl;
+		std::cout << "state " << state << std::endl;
+		if (attack_anim.frameIndex == attack_anim.frames-1) {
+			std::cout << "hurt" << std::endl;
+			hurt(character);
+		}
 	}
 }
 
