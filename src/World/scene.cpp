@@ -154,7 +154,8 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 				else if (attributes[1].compare("npc") == 0)
 				{
 					NPC new_npc;
-					new_npc.init();
+					npcs.push_back(new_npc);
+					npcs[npcs.size()-1].init();
 					i++;
 					attributes = split(lines[i], ' ');
 					while (attributes.size() >= 1 && attributes[0] != "}")
@@ -162,43 +163,42 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 						if (attributes.size() >= 2)
 						{
 							if (attributes[0].compare("	width:") == 0)
-								new_npc.size.x = std::stoi(attributes[1]);
+								npcs[npcs.size()-1].size.x = std::stoi(attributes[1]);
 							if (attributes[0].compare("	height:") == 0)
-								new_npc.size.y = std::stoi(attributes[1]);
+								npcs[npcs.size()-1].size.y = std::stoi(attributes[1]);
 							if (attributes[0].compare("	x_pos:") == 0)
-								new_npc.position.x = std::stof(attributes[1]);
+								npcs[npcs.size()-1].position.x = std::stof(attributes[1]);
 							if (attributes[0].compare("	y_pos:") == 0)
-								new_npc.position.y = std::stof(attributes[1]);
+								npcs[npcs.size()-1].position.y = std::stof(attributes[1]);
 							if (attributes[0].compare("	type:") == 0) {
 								if (attributes[1].compare("chatter") == 0)
-									new_npc.type = chatter;
+									npcs[npcs.size()-1].type = chatter;
 								else if (attributes[1].compare("enemy") == 0)
-									new_npc.type = enemy;
+									npcs[npcs.size()-1].type = enemy;
 								else
-									new_npc.type = walker;
+									npcs[npcs.size()-1].type = walker;
 							}
 							if (attributes[0].compare("	speed:") == 0)
-								new_npc.speed = std::stof(attributes[1]);
+								npcs[npcs.size()-1].speed = std::stof(attributes[1]);
 							if (attributes[0].compare("	walk_anim:") == 0) {
-								new_npc.walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								npcs[npcs.size()-1].walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
 								if (std::stoi(attributes[8]))
-									new_npc.walk_anim.flip();
+									npcs[npcs.size()-1].walk_anim.flip();
 							}
 							if (attributes[0].compare("	idle_anim:") == 0) {
-								new_npc.idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								npcs[npcs.size()-1].idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
 								if (std::stoi(attributes[8]))
-									new_npc.idle_anim.flip();
+									npcs[npcs.size()-1].idle_anim.flip();
 							}
 							if (attributes[0].compare("	attack_anim:") == 0) {
-								new_npc.idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								npcs[npcs.size()-1].idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
 								if (std::stoi(attributes[8]))
-									new_npc.idle_anim.flip();
+									npcs[npcs.size()-1].idle_anim.flip();
 							}
 						}
 						i++;
 						attributes = split(lines[i], ' ');
 					}
-					npcs.push_back(new_npc);
 				}
 				else if (attributes[1].compare("block") == 0)
 				{

@@ -73,6 +73,10 @@ void Character::hurt(Character* character)
 	if (character->state != hurting) {
 		character->health -= damage;
 		character->state = hurting;
+		/*if (toTheRight(character))
+			character->velocity.x -= knockback;
+		else*/
+			character->velocity.x += knockback;
 	}
 }
 

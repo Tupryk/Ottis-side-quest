@@ -101,3 +101,11 @@ void Animation::draw(float x, float y, sf::RenderWindow* window, bool reversed)
 	sprite.setPosition(std::round(set_x), std::round(set_y));
 	window->draw(sprite);
 }
+
+int Animation::getIndex() {
+	return frameIndex;
+}
+
+int Animation::getFrameCount() {
+	return frames;
+}

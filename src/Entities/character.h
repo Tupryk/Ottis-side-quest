@@ -19,9 +19,10 @@ struct Character : public RigidBody
 	Animation attack_anim;
 	Animation hurt_anim;
 	States state = idle;
-	float speed = 0.01;
 	int health = 100;
 	int damage = 10;
+	float speed = 0.01;
+	float knockback = 5;
 	bool flipped = false;
 
 	void die();

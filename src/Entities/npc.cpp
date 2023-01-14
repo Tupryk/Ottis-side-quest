@@ -56,8 +56,8 @@ void NPC::attack(Character* character)
 		acceleration.x = 0;
 		state = attacking;
 		std::cout << "going to hurt" << std::endl;
-		std::cout << "attack index " << attack_anim.frameIndex << std::endl;
-		std::cout << "attack frames " << attack_anim.frames << std::endl;
+		std::cout << "attack index " << attack_anim.getIndex() << std::endl;
+		std::cout << "attack frames " << attack_anim.getFrameCount() << std::endl;
 		std::cout << "state " << state << std::endl;
 		if (attack_anim.frameIndex == attack_anim.frames-1) {
 			std::cout << "hurt" << std::endl;
