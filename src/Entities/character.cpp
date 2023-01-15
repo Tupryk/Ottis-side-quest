@@ -14,7 +14,7 @@ void Character::updateState()
 			state = walking;
 		else if (abs(acceleration.x) == speed*2 || abs(acceleration.z) == (speed*4))
 			state = running;
-		else
+		else if (state != attacking)
 			state = idle;
 
 		if ((velocity.x < 0 && !flipped) || (velocity.x > 0 && flipped)) {
@@ -28,7 +28,6 @@ void Character::updateState()
 			flipped = !flipped;
 		}
 	} else {
-		std::cout << "hurting" << std::endl;
 		if (hurt_anim.frameIndex == hurt_anim.frames-1) {
 			state = idle;
 			hurt_anim.frameIndex = 0;
@@ -73,9 +72,9 @@ void Character::hurt(Character* character)
 	if (character->state != hurting) {
 		character->health -= damage;
 		character->state = hurting;
-		/*if (toTheRight(character))
+		if (toTheRight(character))
 			character->velocity.x -= knockback;
-		else*/
+		else
 			character->velocity.x += knockback;
 	}
 }
@@ -85,6 +84,16 @@ void Character::die()
 	position.x = 0;
 	position.y = 0;
 	position.z = 0;
+
+	velocity.x = 0;
+	velocity.y = 0;
+	velocity.z = 0;
+
+	acceleration.x = 0;
+	acceleration.y = 0;
+	acceleration.z = 0;
+
+	health = max_health;
 }
 
 vec3d Character::getHoldingPos()

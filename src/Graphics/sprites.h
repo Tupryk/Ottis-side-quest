@@ -43,8 +43,7 @@ public:
 	void setScale(float x, float y);
 	void flip();
 	void draw(float x, float y, sf::RenderWindow* window, bool reversed = false);
-	int getIndex();
-	int getFrameCount();
+	void reset();
 };
 
 

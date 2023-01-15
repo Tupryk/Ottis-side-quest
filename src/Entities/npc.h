@@ -23,9 +23,9 @@ public:
 	NPC_Type type;
 
 	void init();
-	void chat(StaticBody body, Camera* camera, sf::RenderWindow* window);
+	void chat(StaticBody* body, Camera* camera, sf::RenderWindow* window);
 	void wander();
-	void follow(StaticBody body);
+	void follow(StaticBody* body);
 	void attack(Character* character);
 };
 

@@ -28,15 +28,15 @@ void Player::move()
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-			acceleration.z = speed * 4;
-		else
-			acceleration.z = speed * 2;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 			acceleration.z = -speed * 4;
 		else
 			acceleration.z = -speed * 2;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+			acceleration.z = speed * 4;
+		else
+			acceleration.z = speed * 2;
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		acceleration.x = 0;

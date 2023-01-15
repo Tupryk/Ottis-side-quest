@@ -33,7 +33,7 @@ void Item::getPicket(Character* player)
 		}
 	}
 	else {
-		if (overLap(*player) && !buttonBuffer && sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
+		if (overLap(player) && !buttonBuffer && sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
 			picket = true;
 			buttonBuffer = true;
 		}

@@ -20,6 +20,7 @@ struct Character : public RigidBody
 	Animation hurt_anim;
 	States state = idle;
 	int health = 100;
+	int max_health = 100;
 	int damage = 10;
 	float speed = 0.01;
 	float knockback = 5;

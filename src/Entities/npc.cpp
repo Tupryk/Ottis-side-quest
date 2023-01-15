@@ -14,7 +14,7 @@ void NPC::init()
 	conversation.load("conversation_gon_1.txt");
 }
 
-void NPC::chat(StaticBody body, Camera* camera, sf::RenderWindow* window)
+void NPC::chat(StaticBody* body, Camera* camera, sf::RenderWindow* window)
 {
 	conversation.chatting = &chatting;
 	if (overLap(body)) {
@@ -33,13 +33,13 @@ void NPC::chat(StaticBody body, Camera* camera, sf::RenderWindow* window)
 	}
 }
 
-void NPC::follow(StaticBody body)
+void NPC::follow(StaticBody* body)
 {
 	if (!overLap(body)) {
-		if (body.position.x > position.x)
-			acceleration.x = speed;
-		else
+		if (toTheRight(body))
 			acceleration.x = -speed;
+		else
+			acceleration.x = speed;
 	} else {
 		acceleration.x = 0;
 	}
@@ -47,22 +47,17 @@ void NPC::follow(StaticBody body)
 
 void NPC::attack(Character* character)
 {
-	if (!overLap(*character)) {
+	if (!overLap(character)) {
 		if (character->position.x > position.x)
 			acceleration.x = speed;
 		else
 			acceleration.x = -speed;
+		attack_anim.reset();
 	} else {
 		acceleration.x = 0;
 		state = attacking;
-		std::cout << "going to hurt" << std::endl;
-		std::cout << "attack index " << attack_anim.getIndex() << std::endl;
-		std::cout << "attack frames " << attack_anim.getFrameCount() << std::endl;
-		std::cout << "state " << state << std::endl;
-		if (attack_anim.frameIndex == attack_anim.frames-1) {
-			std::cout << "hurt" << std::endl;
+		if (attack_anim.frameIndex == attack_anim.frames-1)
 			hurt(character);
-		}
 	}
 }
 

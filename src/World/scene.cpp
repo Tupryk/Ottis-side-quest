@@ -191,9 +191,9 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 									npcs[npcs.size()-1].idle_anim.flip();
 							}
 							if (attributes[0].compare("	attack_anim:") == 0) {
-								npcs[npcs.size()-1].idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
+								npcs[npcs.size()-1].attack_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
 								if (std::stoi(attributes[8]))
-									npcs[npcs.size()-1].idle_anim.flip();
+									npcs[npcs.size()-1].attack_anim.flip();
 							}
 						}
 						i++;
@@ -289,7 +289,7 @@ void Scene::render(sf::RenderWindow* window)
 
 	for (int i = 0; i < npcs.size(); i++) {
 		if (npcs[i].type == chatter)
-			npcs[i].chat(player, &camera, window);
+			npcs[i].chat(&player, &camera, window);
 		npcs[i].draw(window);
 	}
 	for (auto block : blocks)

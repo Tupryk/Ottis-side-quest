@@ -19,8 +19,9 @@ struct StaticBody
 	vec3d position;
 	vec3d size;
 
-	bool overLap(StaticBody body);
-	bool overLapOffset(StaticBody body, float x, float y, float w, float h);
+	bool overLap(StaticBody* body);
+	bool overLapOffset(StaticBody* body, float x, float y, float w, float h);
+	bool toTheRight(StaticBody* body);
 };
 
 struct RigidBody : StaticBody

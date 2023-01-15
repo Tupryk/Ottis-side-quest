@@ -102,10 +102,8 @@ void Animation::draw(float x, float y, sf::RenderWindow* window, bool reversed)
 	window->draw(sprite);
 }
 
-int Animation::getIndex() {
-	return frameIndex;
-}
-
-int Animation::getFrameCount() {
-	return frames;
+void Animation::reset()
+{
+	frameIndex = 0;
+	Timer.restart();
 }
