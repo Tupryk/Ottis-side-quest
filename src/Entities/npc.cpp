@@ -47,16 +47,15 @@ void NPC::follow(StaticBody* body)
 
 void NPC::attack(Character* character)
 {
-	if (!overLap(character)) {
+	if (!overLap(character) && state != attacking) {
 		if (character->position.x > position.x)
 			acceleration.x = speed;
 		else
 			acceleration.x = -speed;
-		attack_anim.reset();
-	} else {
+	} else if (overLap(character)) {
 		acceleration.x = 0;
 		state = attacking;
-		if (attack_anim.frameIndex == attack_anim.frames-1)
+		if (attack_anim.finished)
 			hurt(character);
 	}
 }

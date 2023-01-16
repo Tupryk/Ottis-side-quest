@@ -4,10 +4,9 @@
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
 #include "../Graphics/camera.h"
-#include <iostream>
 
 
-enum States { walking, running, jumping, falling, attacking, idle, hurting };
+enum States { walking, running, jumping, falling, attacking, idle, damaged };
 
 struct Character : public RigidBody
 {

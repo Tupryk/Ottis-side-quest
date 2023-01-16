@@ -3,37 +3,33 @@
 
 void Character::updateState()
 {
-	if (health <= 0)
-		die();
-	if (state != hurting) {
-		if (velocity.y < 0)
-			state = jumping;
-		else if (velocity.y > 0)
-			state = falling;
-		else if (abs(acceleration.x) == speed || abs(acceleration.z) == (speed*2))
-			state = walking;
-		else if (abs(acceleration.x) == speed*2 || abs(acceleration.z) == (speed*4))
-			state = running;
-		else if (state != attacking)
-			state = idle;
-
-		if ((velocity.x < 0 && !flipped) || (velocity.x > 0 && flipped)) {
-			walk_anim.flip();
-			idle_anim.flip();
-			run_anim.flip();
-			jump_anim.flip();
-			fall_anim.flip();
-			attack_anim.flip();
-			hurt_anim.flip();
-			flipped = !flipped;
-		}
-	} else {
-		if (hurt_anim.frameIndex == hurt_anim.frames-1) {
-			state = idle;
-			hurt_anim.frameIndex = 0;
-			updateState();
-		}
+	if ((velocity.x < 0 && !flipped) || (velocity.x > 0 && flipped)) {
+		walk_anim.flip();
+		idle_anim.flip();
+		run_anim.flip();
+		jump_anim.flip();
+		fall_anim.flip();
+		attack_anim.flip();
+		hurt_anim.flip();
+		flipped = !flipped;
 	}
+
+	if (health <= 0) die();
+	if (state == damaged && !hurt_anim.finished) return;
+	if (state == attacking && !attack_anim.finished) return;
+	hurt_anim.reset();
+	attack_anim.reset();
+
+	if (velocity.y < 0)
+		state = jumping;
+	else if (velocity.y > 0)
+		state = falling;
+	else if (abs(acceleration.x) == speed || abs(acceleration.z) == (speed*2))
+		state = walking;
+	else if (abs(acceleration.x) == speed*2 || abs(acceleration.z) == (speed*4))
+		state = running;
+	else
+		state = idle;
 }
 
 void Character::draw(sf::RenderWindow* window)
@@ -58,7 +54,7 @@ void Character::draw(sf::RenderWindow* window)
 	case attacking:
 		attack_anim.draw(relative_x, relative_y, window);
 		break;
-	case hurting:
+	case damaged:
 		hurt_anim.draw(relative_x, relative_y, window);
 		break;
 	default:
@@ -69,13 +65,14 @@ void Character::draw(sf::RenderWindow* window)
 
 void Character::hurt(Character* character)
 {
-	if (character->state != hurting) {
+	// needs a cooldown for taking damage
+	if (character->state != damaged) {
 		character->health -= damage;
-		character->state = hurting;
+		character->state = damaged;
 		if (toTheRight(character))
-			character->velocity.x -= knockback;
+			character->velocity.x = -knockback;
 		else
-			character->velocity.x += knockback;
+			character->velocity.x = knockback;
 	}
 }
 

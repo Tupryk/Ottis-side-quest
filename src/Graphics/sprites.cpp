@@ -73,17 +73,20 @@ void Animation::update(bool reversed)
 {
 	sf::Time lastUpdate = Timer.getElapsedTime();
 	if (lastUpdate.asMilliseconds() >= (1000/fps)) {
+		finished = false;
 		if (!reversed)
 		{
 			frameIndex++;
-			if (frameIndex >= frames)
-				frameIndex = 0;
+			if (frameIndex >= frames) {
+				finished = true;
+				frameIndex = 0; }
 		}
 		else
 		{
 			frameIndex--;
-			if (frameIndex < 0)
-				frameIndex = frames-1;
+			if (frameIndex < 0) {
+				finished = true;
+				frameIndex = frames-1; }
 		}
 		Timer.restart();
 	}
@@ -104,6 +107,7 @@ void Animation::draw(float x, float y, sf::RenderWindow* window, bool reversed)
 
 void Animation::reset()
 {
+	finished = false;
 	frameIndex = 0;
 	Timer.restart();
 }

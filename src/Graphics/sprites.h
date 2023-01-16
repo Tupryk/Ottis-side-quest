@@ -38,6 +38,7 @@ public:
 	int frameIndex = 0;
 	int fps = 1;
 	bool flipped = false;
+	bool finished = false;
 
 	void load(std::string ImageDrirectory, int frames, int fps, float w, float h, float x = 0, float y = 0);
 	void setScale(float x, float y);
