@@ -48,8 +48,11 @@ void RigidBody::update(std::vector<StaticBody> bodies, float max_z)
 
 	// Repeat for z- and y-axis
 	position.z = position.z + velocity.z + ( 0.5 * acceleration.z );
-	if (position.z > max_z) { position.z = max_z; velocity.z = 0; };
-	if (position.z < -max_z) { position.z = -max_z; velocity.z = 0; };
+	if (max_z > 0)
+	{
+		if (position.z > max_z) { position.z = max_z; velocity.z = 0; };
+		if (position.z < -max_z) { position.z = -max_z; velocity.z = 0; };
+	}
 
 	position.y = position.y + velocity.y + ( 0.5 * acceleration.y ) - ( 0.5 * Gravity );
 	for (auto body : bodies) {

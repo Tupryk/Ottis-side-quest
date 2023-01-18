@@ -265,6 +265,18 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 			}
 		}
 	}
+	Segment3D acc_seg;
+	acc_seg.start.x = -1;
+	acc_seg.end.x = 1;
+	acc_seg.start.y = -1;
+	acc_seg.end.y = 1;
+	Segment3D col_seg;
+	col_seg.start.x = 230;
+	col_seg.end.x = 255;
+	vec3d siz;
+	siz.x = 20;
+	siz.y = 20;
+	parts.init(50, col_seg, acc_seg, siz);
 }
 
 void Scene::render(sf::RenderWindow* window)
@@ -275,7 +287,7 @@ void Scene::render(sf::RenderWindow* window)
 	player.move();
 	player.update(bodies);
 	for (int i = 0; i < npcs.size(); i++) {
-		npcs[i].update(bodies);
+		npcs[i].update(bodies); // need to get block where im standing and get ist width
 		if (npcs[i].type == enemy)
 			npcs[i].attack(&player);
 		else
@@ -301,4 +313,7 @@ void Scene::render(sf::RenderWindow* window)
 		items[i].getPicket(&player);
 		items[i].draw(window);
 	}
+
+	parts.update();
+	parts.draw(window);
 }

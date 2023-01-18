@@ -1,6 +1,3 @@
-#include <cmath>
-#include <SFML/Graphics.hpp>
-
 #include "sprites.h"
 
 

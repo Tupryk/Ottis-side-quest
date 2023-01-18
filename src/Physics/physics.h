@@ -1,6 +1,8 @@
 #ifndef PHYSICS
 #define PHYSICS
 
+#define STANDARD_GRAVITY -0.5
+
 #include <vector>
 
 
@@ -12,6 +14,18 @@ struct vec2d
 struct vec3d
 {
 	float x = 0, y = 0, z = 0;
+};
+
+struct Segment2D
+{
+	vec2d start;
+	vec2d end;
+};
+
+struct Segment3D
+{
+	vec3d start;
+	vec3d end;
 };
 
 struct StaticBody
@@ -35,7 +49,7 @@ struct RigidBody : StaticBody
 	float Bounciness = 0;
 	bool onFloor = false;
 
-	void update(std::vector<StaticBody> bodies = {}, float max_z = 10);
+	void update(std::vector<StaticBody> bodies = {}, float max_z = -1);
 };
 
 #endif

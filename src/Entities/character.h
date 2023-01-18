@@ -3,10 +3,9 @@
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
-#include "../Graphics/camera.h"
 
 
-enum States { walking, running, jumping, falling, attacking, idle, damaged };
+enum States { walking, running, jumping, falling, attacking, idle, damaged, sitting };
 
 struct Character : public RigidBody
 {
@@ -24,6 +23,7 @@ struct Character : public RigidBody
 	float speed = 0.01;
 	float knockback = 5;
 	bool flipped = false;
+
 
 	void die();
 	void updateState();

@@ -1,6 +1,7 @@
 #ifndef SPRITES
 #define SPRITES
 
+#include <cmath>
 #include <SFML/Graphics.hpp>
 
 
