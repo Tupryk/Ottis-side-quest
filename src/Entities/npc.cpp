@@ -57,6 +57,8 @@ void NPC::attack(Character* character)
 		state = attacking;
 		if (attack_anim.finished)
 			hurt(character);
+	} else if (!overLap(character) && state == attacking) {
+		state = idle;
 	}
 }
 

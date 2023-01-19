@@ -266,17 +266,17 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 		}
 	}
 	Segment3D acc_seg;
-	acc_seg.start.x = -1;
-	acc_seg.end.x = 1;
+	acc_seg.start.x = -5;
+	acc_seg.end.x = 5;
 	acc_seg.start.y = -1;
-	acc_seg.end.y = 1;
+	acc_seg.end.y = 10;
 	Segment3D col_seg;
 	col_seg.start.x = 190;
 	col_seg.end.x = 255;
 	vec3d siz;
-	siz.x = 20;
-	siz.y = 20;
-	parts.init(50, col_seg, acc_seg, siz);
+	siz.x = 200;
+	siz.y = 200;
+	parts.init(100, col_seg, acc_seg, siz);
 }
 
 void Scene::render(sf::RenderWindow* window)
