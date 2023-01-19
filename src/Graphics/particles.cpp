@@ -41,9 +41,9 @@ void Particles::init(unsigned int count, Segment3D color_range, Segment3D acc_ra
 Particle Particles::generate_unit()
 {
 	// Generate colors
-	int r = rand()%(static_cast<int>(color_range.start.x-color_range.end.x) + 1) + color_range.end.x;
-	int g = rand()%(static_cast<int>(color_range.start.y-color_range.end.y) + 1) + color_range.end.y;
-	int b = rand()%(static_cast<int>(color_range.start.z-color_range.end.z) + 1) + color_range.end.z;
+	int r = rand()%(static_cast<int>(color_range.end.x-color_range.start.x) + 1) + color_range.start.x;
+	int g = rand()%(static_cast<int>(color_range.end.y-color_range.start.y) + 1) + color_range.start.y;
+	int b = rand()%(static_cast<int>(color_range.end.z-color_range.start.z) + 1) + color_range.start.z;
 	Particle part(r, g, b);
 
 	// Generate starting velocity
@@ -58,7 +58,7 @@ Particle Particles::generate_unit()
 	}
 
 	// Place particle in correct spot
-	part.place(size.x, size.y);
+	part.place(size.x*0.5, size.y*0.5);
 
 	return part;
 }
@@ -87,7 +87,8 @@ void Particles::update()
 {
 	for (int i = 0; i < bodies.size(); i++) {
 		bodies[i].update();
-		if (!overLap(&bodies[i])) {
+		if (bodies[i].position.x < 0 || bodies[i].position.y < 0 ||
+			bodies[i].position.x >= size.x || bodies[i].position.y >= size.y) {
 			if (respawn) bodies[i] = generate_unit();
 			else bodies.erase(bodies.begin()+i);
 		}
@@ -100,9 +101,9 @@ void Particles::draw(sf::RenderWindow* window)
 	image.createMaskFromColor(sf::Color::White, 0);
 	for (int i = 0; i < bodies.size(); i++)
 	{
-		image.setPixel(std::round(bodies[i].position.x),
-						std::round(bodies[i].position.y),
-						sf::Color(bodies[i].r, bodies[i].g, bodies[i].b));
+		float x = std::round(bodies[i].position.x);
+		float y = std::round(bodies[i].position.y + bodies[i].position.z);
+		image.setPixel(x, y, sf::Color(bodies[i].r, bodies[i].g, bodies[i].b));
 	}
 	texture.loadFromImage(image);
 	sprite.setTexture(texture);

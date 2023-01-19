@@ -271,7 +271,7 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 	acc_seg.start.y = -1;
 	acc_seg.end.y = 1;
 	Segment3D col_seg;
-	col_seg.start.x = 230;
+	col_seg.start.x = 190;
 	col_seg.end.x = 255;
 	vec3d siz;
 	siz.x = 20;
