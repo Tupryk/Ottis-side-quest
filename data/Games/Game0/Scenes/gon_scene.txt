@@ -80,8 +80,8 @@ create npc 1 {
 }
 
 create npc 1 {
-	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
-	idle_anim: gon_scene/gonwalk.png 2 2 40 40 0 120 0
+	walk_anim: suki_scene/suki.png 7 8 40 40 0 80 0
+	idle_anim: suki_scene/suki.png 1 2 40 40 0 0 0
 	width: 40
 	height: 40
 	speed: 0.07

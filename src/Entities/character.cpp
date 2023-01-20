@@ -3,6 +3,8 @@
 
 void Character::updateState()
 {
+	if (state == sitting) return; // Sitting state needs to be switched from the outside
+
 	if ((velocity.x < 0 && !flipped) || (velocity.x > 0 && flipped)) {
 		walk_anim.flip();
 		idle_anim.flip();

@@ -16,6 +16,7 @@ struct Character : public RigidBody
 	Animation fall_anim;
 	Animation attack_anim;
 	Animation hurt_anim;
+	Animation sitting_anim;
 	States state = idle;
 	int health = 100;
 	int max_health = 100;
