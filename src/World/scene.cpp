@@ -265,18 +265,6 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 			}
 		}
 	}
-	Segment3D acc_seg;
-	acc_seg.start.x = -5;
-	acc_seg.end.x = 5;
-	acc_seg.start.y = -1;
-	acc_seg.end.y = 10;
-	Segment3D col_seg;
-	col_seg.start.x = 190;
-	col_seg.end.x = 255;
-	vec3d siz;
-	siz.x = 200;
-	siz.y = 200;
-	parts.init(100, col_seg, acc_seg, siz);
 }
 
 void Scene::render(sf::RenderWindow* window)
@@ -284,7 +272,7 @@ void Scene::render(sf::RenderWindow* window)
 	std::vector<StaticBody> bodies(blocks.begin(), blocks.end());
 	bodies.insert(bodies.end(), invisibles.begin(), invisibles.end());
 
-	player.move();
+	if (!camera.pop_up) player.move();
 	player.update(bodies);
 	for (int i = 0; i < npcs.size(); i++) {
 		npcs[i].update(bodies); // need to get block where im standing and get ist width
@@ -313,7 +301,4 @@ void Scene::render(sf::RenderWindow* window)
 		items[i].getPicket(&player);
 		items[i].draw(window);
 	}
-
-	parts.update();
-	parts.draw(window);
 }

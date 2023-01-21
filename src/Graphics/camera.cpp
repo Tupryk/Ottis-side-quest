@@ -21,6 +21,8 @@ void DynamicCamera::init(unsigned int window_w, unsigned int window_h, int scene
 
 void DynamicCamera::draw(float x, float y, sf::RenderWindow* window)
 {
+	pop_up = false;
+	
 	if (position.x < x - offsetX)
 		acceleration.x = speed;
 	else if (position.x > x + offsetX)
@@ -61,6 +63,8 @@ void Camera::init(unsigned int window_w, unsigned int window_h, int scene_w, int
 
 void Camera::draw(float x, float y, sf::RenderWindow* window)
 {
+	pop_up = false;
+
 	position.x = x;
 	position.y = y;
 

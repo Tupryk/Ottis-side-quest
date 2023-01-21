@@ -5,11 +5,11 @@ void Object::draw(sf::RenderWindow* window) {
 	image.draw(position.x, position.y + position.z, window);
 }
 
-void Puzzle::init(unsigned int dimensions, std::string image_path, float width)
+void Puzzle::init(std::string image_path, float image_width, unsigned int dimensions)
 {
 	// Should readjust size depending on screen size
 	this->dimensions = dimensions;
-	this->cell_width = width/dimensions;
+	this->cell_width = image_width/dimensions;
 
 	{
 		for (int i = 0; i < dimensions*dimensions; i++)
@@ -28,30 +28,31 @@ void Puzzle::init(unsigned int dimensions, std::string image_path, float width)
 
 void Puzzle::handle(Camera* camera, sf::RenderWindow* window)
 {
+	camera->pop_up = true;
 	int empty_cell = find(positions.begin(), positions.end(), -1) - positions.begin();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
-		&& (empty_cell/dimensions) != dimensions-1)
+		&& (empty_cell/dimensions) != dimensions-1 && !button_buffer)
 	{
 		positions[empty_cell] = positions[empty_cell+dimensions];
 		positions[empty_cell+dimensions] = -1;
 		button_buffer = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)
-		&& (empty_cell%dimensions) != dimensions-1)
+		&& (empty_cell%dimensions) != dimensions-1 && !button_buffer)
 	{
 		positions[empty_cell] = positions[empty_cell+1];
 		positions[empty_cell+1] = -1;
 		button_buffer = true;	
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)
-		&& (empty_cell/dimensions) != 0)
+		&& (empty_cell/dimensions) != 0 && !button_buffer)
 	{
 		positions[empty_cell] = positions[empty_cell-dimensions];
 		positions[empty_cell-dimensions] = -1;
 		button_buffer = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)
-		&& (empty_cell%dimensions) != 0) {
+		&& (empty_cell%dimensions) != 0 && !button_buffer) {
 		positions[empty_cell] = positions[empty_cell-1];
 		positions[empty_cell-1] = -1;
 		button_buffer = true;

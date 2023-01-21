@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "../Graphics/camera.h"
-#include "../Graphics/particles.h"
+#include "../Entities/objects.h"
 #include "../Entities/player.h"
 #include "../Entities/block.h"
 #include "../Entities/items.h"
@@ -23,7 +23,6 @@ class Scene
 	std::vector<Block> blocks;
 	std::vector<StaticBody> invisibles;
 	std::vector<NPC> npcs;
-	Particles parts;
 
 public:
 	Scene(unsigned int window_w, unsigned int window_h, std::string scene_data);
