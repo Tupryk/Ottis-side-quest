@@ -1,7 +1,7 @@
 #include "indicators.h"
 
-
-void PressButton::init(char c)
+/*
+void ButtonIndicator::init(char c)
 {
 	if (c == 'e') {
 		appearing.load("InteractionButton.png", 3, 6, 16, 25);
@@ -12,8 +12,9 @@ void PressButton::init(char c)
 	}
 }
 
-void PressButton::draw(float x, float y, sf::RenderWindow* window, bool draw)
+void ButtonIndicator::draw_self(float x, float y, sf::RenderWindow* window, bool draw)
 {
+	// this code doesn't work exactly how it should
 	if (draw && appearing.frameIndex < appearing.frames-1)
 		appearing.draw(x, y, window);
 	else if (draw && appearing.frameIndex >= appearing.frames-1)
@@ -21,3 +22,4 @@ void PressButton::draw(float x, float y, sf::RenderWindow* window, bool draw)
 	else if (!draw && appearing.frameIndex > 0)
 		appearing.draw(x, y, window, true);
 }
+*/

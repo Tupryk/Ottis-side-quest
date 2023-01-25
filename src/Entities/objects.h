@@ -33,8 +33,7 @@ class Puzzle : Object
 
 	std::vector<StaticImage> pieces; // If the dimensions are 3 there will be (3*3)-1 = 8 pieces.
 	std::vector<int> positions; // There will be 3*3 = 9 possible positions.
-	// StaticImage background;
-	PressButton button;
+	StaticImage background;
 
 public:
 	void init(std::string image_path, float image_width, unsigned int dimensions = 3); // Slices and shuffles image. (image must be square)

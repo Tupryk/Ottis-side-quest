@@ -36,7 +36,7 @@ void Cursor::draw(Camera* camera, sf::RenderWindow* window)
 	icon.draw(set_x, set_y, window);
 }
 
-void Conversation::load(std::string chat_data)
+void Conversation::load(std::string chat_data, Character* speaker)
 {
 	initial_messages = {0};
 	current_messages = initial_messages;

@@ -52,13 +52,14 @@ class Conversation
 	Cursor cursor;
 	std::vector<int> initial_messages;
 	std::vector<int> current_messages;
+	Character* speaker;
 	bool next_buffer = false;
 
 	void update();
 
 public:
 	bool* chatting;
-	void load(std::string chat_data);
+	void load(std::string chat_data, Character* speaker);
 	void draw(Camera* camera, sf::RenderWindow* window);
 };
 

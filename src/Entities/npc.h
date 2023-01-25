@@ -14,9 +14,7 @@ enum NPC_Type {chatter, enemy, walker};
 class NPC : public Character
 {
 	sf::Clock Timer;
-	PressButton button;
 	std::vector<std::string> chats;
-	Conversation conversation;
 	bool chatting = false;
 
 public:

@@ -22,6 +22,8 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 							scene_w = std::stoi(attributes[1]);
 						if (attributes[0].compare("	height:") == 0)
 							scene_h = std::stoi(attributes[1]);
+						if (attributes[0].compare("	interaction-indicator:") == 0)
+							scene_h = std::stoi(attributes[1]);
 					}
 					i++;
 					attributes = split(lines[i], ' ');
