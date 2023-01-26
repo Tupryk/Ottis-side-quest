@@ -10,12 +10,12 @@ void NPC::init()
 	Friction = 0.1;
 	AirResistance = 0.01;
 
-	conversation.load("conversation_gon_1.txt");
+	// conversation.load("conversation_gon_1.txt");
 }
 
 void NPC::chat(StaticBody* body, Camera* camera, sf::RenderWindow* window)
 {
-	conversation.chatting = &chatting;
+	// conversation.chatting = &chatting;
 	if (overLap(body)) {
 		/*
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !button.buffer) {

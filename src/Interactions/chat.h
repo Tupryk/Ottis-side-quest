@@ -4,10 +4,12 @@
 #include <string>
 #include <vector>
 #include <SFML/Graphics.hpp>
+
+#include "../utils.h"
 #include "../Graphics/camera.h"
 #include "../Graphics/sprites.h"
 #include "../Graphics/text.h"
-#include "../utils.h"
+#include "../Entities/character.h"
 
 
 struct Face
