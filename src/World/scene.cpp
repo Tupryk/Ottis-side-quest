@@ -10,260 +10,31 @@ Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_dat
 		if (attributes.size() >= 2)
 		{
 			if (attributes[0].compare("Scene_data") == 0) {
-				int scene_w = -1;
-				int scene_h = -1;
-				i++;
-				attributes = split(lines[i], ' ');
-				while (attributes.size() >= 1 && attributes[0] != "}")
-				{
-					if (attributes.size() >= 2)
-					{
-						if (attributes[0].compare("	width:") == 0)
-							scene_w = std::stoi(attributes[1]);
-						if (attributes[0].compare("	height:") == 0)
-							scene_h = std::stoi(attributes[1]);
-						if (attributes[0].compare("	interaction-indicator:") == 0)
-							scene_h = std::stoi(attributes[1]);
-					}
-					i++;
-					attributes = split(lines[i], ' ');
-				}
-				camera.init(window_w, window_h, scene_w, scene_h);
+				if (attributes[0].compare("-interaction-indicators:") == 0)
+					continue; // This is for the style of button indicators
 			}
-			else if (attributes[0].compare("create") == 0) {
-				if (attributes[1].compare("platform") == 0)
-				{
-					std::string texture = "";
-					int width = -1;
-					int height = -1;
-					float x_pos = 0;
-					float y_pos = 0;
-					i++;
-					attributes = split(lines[i], ' ');
-					while (attributes.size() >= 1 && attributes[0] != "}")
-					{
-						if (attributes.size() >= 2)
-						{
-							if (attributes[0].compare("	texture:") == 0)
-								texture = attributes[1];
-							if (attributes[0].compare("	width:") == 0)
-								width = std::stoi(attributes[1]);
-							if (attributes[0].compare("	height:") == 0)
-								height = std::stoi(attributes[1]);
-							if (attributes[0].compare("	x_pos:") == 0)
-								x_pos = std::stof(attributes[1]);
-							if (attributes[0].compare("	y_pos:") == 0)
-								y_pos = std::stof(attributes[1]);
-						}
-						i++;
-						attributes = split(lines[i], ' ');
-					}
-					if (texture.compare("") != 0 && width >= 0 && height >= 0) {
-						Block new_block(texture, width, height);
-						new_block.position.x = x_pos;
-						new_block.position.y = y_pos;
-						blocks.push_back(new_block);
-					}
-				}
+			else if (attributes[0].compare("create") == 0)
+			{
+				if (attributes[1].compare("camera") == 0)
+					camera = readCamera(window_w, window_h, lines, &i);
+
+				else if (attributes[1].compare("platform") == 0)
+					blocks.push_back(readPlatform(lines, &i));
+				
 				else if (attributes[1].compare("player") == 0)
-				{
-					player.init();
-					i++;
-					attributes = split(lines[i], ' ');
-					while (attributes.size() >= 1 && attributes[0] != "}")
-					{
-						if (attributes.size() >= 2)
-						{
-							if (attributes[0].compare("	width:") == 0)
-								player.size.x = std::stoi(attributes[1]);
-							if (attributes[0].compare("	height:") == 0)
-								player.size.y = std::stoi(attributes[1]);
-							if (attributes[0].compare("	x_pos:") == 0)
-								player.position.x = std::stof(attributes[1]);
-							if (attributes[0].compare("	y_pos:") == 0)
-								player.position.y = std::stof(attributes[1]);
-							if (attributes[0].compare("	walk_anim:") == 0) {
-								player.walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									player.walk_anim.flip();
-							}
-							if (attributes[0].compare("	idle_anim:") == 0) {
-								player.idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									player.idle_anim.flip();
-							}
-							if (attributes[0].compare("	run_anim:") == 0) {
-								player.run_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									player.run_anim.flip();
-							}
-							if (attributes[0].compare("	jump_anim:") == 0) {
-								player.jump_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									player.jump_anim.flip();
-							}
-							if (attributes[0].compare("	fall_anim:") == 0) {
-								player.fall_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									player.fall_anim.flip();
-							}
-							if (attributes[0].compare("	hurt_anim:") == 0) {
-								player.hurt_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									player.hurt_anim.flip();
-							}
-						}
-						i++;
-						attributes = split(lines[i], ' ');
-					}
-				}
+					player = readPlayer(lines, &i);
+
 				else if (attributes[1].compare("slice") == 0)
-				{
-					std::string texture = "";
-					int width = -1;
-					int height = -1;
-					float x_pos = 0;
-					float y_pos = 0;
-					float z_pos = 0;
-					i++;
-					attributes = split(lines[i], ' ');
-					while (attributes.size() >= 1 && attributes[0] != "}")
-					{
-						if (attributes.size() >= 2)
-						{
-							if (attributes[0].compare("	texture:") == 0)
-								texture = attributes[1];
-							if (attributes[0].compare("	width:") == 0)
-								width = std::stoi(attributes[1]);
-							if (attributes[0].compare("	height:") == 0)
-								height = std::stoi(attributes[1]);
-							if (attributes[0].compare("	x_pos:") == 0)
-								x_pos = std::stof(attributes[1]);
-							if (attributes[0].compare("	y_pos:") == 0)
-								y_pos = std::stof(attributes[1]);
-							if (attributes[0].compare("	z_pos:") == 0)
-								z_pos = std::stof(attributes[1]);
-						}
-						i++;
-						attributes = split(lines[i], ' ');
-					}
-					if (texture.compare("") != 0 && width >= 0 && height >= 0) {
-						Slice new_slice;
-						new_slice.init(x_pos, y_pos, z_pos, texture, width, height);
-						slices.push_back(new_slice);
-					}
-				}
+					slices.push_back(readSlice(lines, &i));
+				
 				else if (attributes[1].compare("npc") == 0)
-				{
-					NPC new_npc;
-					npcs.push_back(new_npc);
-					npcs[npcs.size()-1].init();
-					i++;
-					attributes = split(lines[i], ' ');
-					while (attributes.size() >= 1 && attributes[0] != "}")
-					{
-						if (attributes.size() >= 2)
-						{
-							if (attributes[0].compare("	width:") == 0)
-								npcs[npcs.size()-1].size.x = std::stoi(attributes[1]);
-							if (attributes[0].compare("	height:") == 0)
-								npcs[npcs.size()-1].size.y = std::stoi(attributes[1]);
-							if (attributes[0].compare("	x_pos:") == 0)
-								npcs[npcs.size()-1].position.x = std::stof(attributes[1]);
-							if (attributes[0].compare("	y_pos:") == 0)
-								npcs[npcs.size()-1].position.y = std::stof(attributes[1]);
-							if (attributes[0].compare("	type:") == 0) {
-								if (attributes[1].compare("chatter") == 0)
-									npcs[npcs.size()-1].type = chatter;
-								else if (attributes[1].compare("enemy") == 0)
-									npcs[npcs.size()-1].type = enemy;
-								else
-									npcs[npcs.size()-1].type = walker;
-							}
-							if (attributes[0].compare("	speed:") == 0)
-								npcs[npcs.size()-1].speed = std::stof(attributes[1]);
-							if (attributes[0].compare("	walk_anim:") == 0) {
-								npcs[npcs.size()-1].walk_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									npcs[npcs.size()-1].walk_anim.flip();
-							}
-							if (attributes[0].compare("	idle_anim:") == 0) {
-								npcs[npcs.size()-1].idle_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									npcs[npcs.size()-1].idle_anim.flip();
-							}
-							if (attributes[0].compare("	attack_anim:") == 0) {
-								npcs[npcs.size()-1].attack_anim.load(attributes[1], std::stoi(attributes[2]), std::stoi(attributes[3]), std::stoi(attributes[4]), std::stoi(attributes[5]), std::stoi(attributes[6]), std::stoi(attributes[7]));
-								if (std::stoi(attributes[8]))
-									npcs[npcs.size()-1].attack_anim.flip();
-							}
-						}
-						i++;
-						attributes = split(lines[i], ' ');
-					}
-				}
+					npcs.push_back(readNPC(lines, &i));
+				
 				else if (attributes[1].compare("block") == 0)
-				{
-					int width = -1;
-					int height = -1;
-					float x_pos = 0;
-					float y_pos = 0;
-					i++;
-					attributes = split(lines[i], ' ');
-					while (attributes.size() >= 1 && attributes[0] != "}")
-					{
-						if (attributes.size() >= 2)
-						{
-							if (attributes[0].compare("	width:") == 0)
-								width = std::stoi(attributes[1]);
-							if (attributes[0].compare("	height:") == 0)
-								height = std::stoi(attributes[1]);
-							if (attributes[0].compare("	x_pos:") == 0)
-								x_pos = std::stof(attributes[1]);
-							if (attributes[0].compare("	y_pos:") == 0)
-								y_pos = std::stof(attributes[1]);
-						}
-						i++;
-						attributes = split(lines[i], ' ');
-					}
-					StaticBody new_body;
-					new_body.position.x = x_pos;
-					new_body.position.y = y_pos;
-					new_body.size.x = width;
-					new_body.size.y = height;
-					invisibles.push_back(new_body);
-				}
+					invisibles.push_back(readBarrier(lines, &i));
+				
 				else if (attributes[1].compare("item") == 0)
-				{
-					std::string texture = "";
-					int width = -1;
-					int height = -1;
-					float x_pos = 0;
-					float y_pos = 0;
-					float z_pos = 0;
-					i++;
-					attributes = split(lines[i], ' ');
-					while (attributes.size() >= 1 && attributes[0] != "}")
-					{
-						if (attributes.size() >= 2)
-						{
-							if (attributes[0].compare("	texture:") == 0)
-								texture = attributes[1];
-							if (attributes[0].compare("	width:") == 0)
-								width = std::stoi(attributes[1]);
-							if (attributes[0].compare("	height:") == 0)
-								height = std::stoi(attributes[1]);
-							if (attributes[0].compare("	x_pos:") == 0)
-								x_pos = std::stof(attributes[1]);
-							if (attributes[0].compare("	y_pos:") == 0)
-								y_pos = std::stof(attributes[1]);
-						}
-						i++;
-						attributes = split(lines[i], ' ');
-					}
-					Item new_item(texture, width, height, x_pos, y_pos);
-					items.push_back(new_item);
-				}
+					items.push_back(readItem(lines, &i));
 			}
 		}
 	}

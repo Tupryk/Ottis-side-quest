@@ -1,6 +1,8 @@
 #ifndef CAMERA
 #define CAMERA
 
+#include <SFML/Graphics.hpp>
+
 #include "../Physics/physics.h"
 
 

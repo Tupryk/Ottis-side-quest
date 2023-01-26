@@ -1,8 +1,9 @@
 #ifndef SCENE
 #define SCENE
 
-#include <SFML/Graphics.hpp>
+#include <string>
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 #include "../Graphics/camera.h"
 #include "../Entities/objects.h"
@@ -12,6 +13,7 @@
 #include "../Entities/background.h"
 #include "../Entities/npc.h"
 #include "../utils.h"
+#include "../ReadObjects/read_objs.h"
 
 
 class Scene

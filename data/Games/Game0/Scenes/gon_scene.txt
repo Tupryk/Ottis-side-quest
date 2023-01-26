@@ -1,109 +1,102 @@
 Scene_data {
-	width: 90
-	height: 0
+-interaction-indicator:
+}
+
+create camera {
+-width: 90
+-height: 0
 }
 
 //create platform 0 {
-	texture: gon_scene/grassFront.png
-	width: 540
-	height: 120
-	x_pos: 0
-	y_pos: 100
+-texture: gon_scene/grassFront.png
+-width: 540
+-height: 120
+-x_pos: 0
+-y_pos: 100
 }
 
 create block 0 {
-	width: 540
-	height: 120
-	x_pos: 0
-	y_pos: 155
+-width: 540
+-height: 120
+-x_pos: 0
+-y_pos: 155
 }
 
 create player {
-	walk_anim: OttiSpriteSheet.png 9 12 16 16 0 0 0
-	idle_anim: OttiSpriteSheet.png 2 2 16 16 0 0 0
-	run_anim: OttiSpriteSheet.png 12 12 16 16 0 16 0
-	jump_anim: OttiSpriteSheet.png 5 12 16 16 0 32 0
-	fall_anim: OttiSpriteSheet.png 4 12 16 16 80 32 0
-	hurt_anim: OttiSpriteSheet.png 5 12 16 16 0 32 0
-	width: 16
-	height: 16
+-walk_anim: OttiSpriteSheet.png 9 12 16 16 0 0 0
+-idle_anim: OttiSpriteSheet.png 2 2 16 16 0 0 0
+-run_anim: OttiSpriteSheet.png 12 12 16 16 0 16 0
+-jump_anim: OttiSpriteSheet.png 5 12 16 16 0 32 0
+-fall_anim: OttiSpriteSheet.png 4 12 16 16 80 32 0
+-hurt_anim: OttiSpriteSheet.png 5 12 16 16 0 32 0
+-width: 16
+-height: 16
 }
 
 create slice 0 {
-	texture: gon_scene/sky.png
-	y_pos: 50
-	z_pos: 0
-	width: 540
-	height: 360
+-texture: gon_scene/sky.png
+-y_pos: 50
+-z_pos: 0
+-width: 540
+-height: 360
 }
 
 create slice 0 {
-	texture: gon_scene/mountains.png
-	y_pos: -25
-	z_pos: 0.9999
-	width: 540
-	height: 126
+-texture: gon_scene/mountains.png
+-y_pos: -25
+-z_pos: 0.9999
+-width: 540
+-height: 126
 }
 
 create slice 0 {
-	texture: gon_scene/grassBack.png
-	y_pos: 55
-	z_pos: 0.999
-	width: 540
-	height: 118
+-texture: gon_scene/grassBack.png
+-y_pos: 55
+-z_pos: 0.999
+-width: 540
+-height: 118
 }
 
 create slice 0 {
-	texture: gon_scene/grassMiddle.png
-	y_pos: 110
-	z_pos: 0.9
-	width: 540
-	height: 180
+-texture: gon_scene/grassMiddle.png
+-y_pos: 110
+-z_pos: 0.9
+-width: 540
+-height: 180
 }
 
 create slice 0 {
-	texture: gon_scene/grassFront.png
-	y_pos: 100
-	z_pos: 0
-	width: 540
-	height: 120
+-texture: gon_scene/grassFront.png
+-y_pos: 100
+-z_pos: 0
+-width: 540
+-height: 120
 }
 
 create npc 1 {
-	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
-	idle_anim: gon_scene/gonwalk.png 2 2 40 40 0 120 0
-	width: 40
-	height: 40
-	speed: 0.07
-	type: chatter
-	x_pos: 0
+-walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
+-idle_anim: gon_scene/gonwalk.png 2 2 40 40 0 120 0
+-width: 40
+-height: 40
+-speed: 0.07
+-type: chatter
+-x_pos: 0
 }
 
 create npc 1 {
-	walk_anim: suki_scene/suki.png 7 8 40 40 0 80 0
-	idle_anim: suki_scene/suki.png 1 2 40 40 0 0 0
-	width: 40
-	height: 40
-	speed: 0.07
-	type: chatter
-	x_pos: 10
-}
-
-create npc 1 {
-	walk_anim: gon_scene/gonwalk.png 6 8 40 40 0 0 1
-	idle_anim: gon_scene/gonwalk.png 2 2 40 40 0 120 0
-	attack_anim: gon_scene/gonwalk.png 7 8 40 40 40 40 0
-	width: 40
-	height: 40
-	speed: 0.07
-	type: enemy
-	x_pos: 50
+-walk_anim: suki_scene/suki.png 7 8 40 40 0 80 0
+-idle_anim: suki_scene/suki.png 1 2 40 40 0 0 0
+-width: 40
+-height: 40
+-speed: 0.07
+-type: chatter
+-x_pos: 10
 }
 
 create item 1 {
-	texture: Ball.png
-	y_pos: 0
-	x_pos: 0
-	width: 2
-	height: 2
+-texture: Ball.png
+-y_pos: 0
+-x_pos: 0
+-width: 2
+-height: 2
 }
