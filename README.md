@@ -8,5 +8,4 @@ Here is a preview:
 ![alt text](https://github.com/Tupryk/Ottis-side-quest/blob/main/readme_images/terminal_modder.png?raw=true)
 ![alt text](https://github.com/Tupryk/Ottis-side-quest/blob/main/readme_images/game_scene1.png?raw=true)
 
-I don't know how to code in c++, I'm trying my best though.
 Might switch from SFML to Vulkan or openGL idk.
