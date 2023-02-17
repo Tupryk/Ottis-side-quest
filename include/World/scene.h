@@ -1,5 +1,4 @@
-#ifndef SCENE
-#define SCENE
+#pragma once
 
 #include <string>
 #include <vector>
@@ -30,6 +29,3 @@ public:
 	Scene(unsigned int window_w, unsigned int window_h, std::string scene_data);
 	void render(sf::RenderWindow* window);
 };
-
-
-#endif

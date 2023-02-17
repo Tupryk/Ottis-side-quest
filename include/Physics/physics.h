@@ -1,5 +1,4 @@
-#ifndef PHYSICS
-#define PHYSICS
+#pragma once
 
 #define STANDARD_GRAVITY -0.5
 
@@ -51,5 +50,3 @@ struct RigidBody : StaticBody
 
 	virtual void update(std::vector<StaticBody> bodies = {}, float max_z = -1);
 };
-
-#endif

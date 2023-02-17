@@ -1,5 +1,4 @@
-#ifndef CHAT
-#define CHAT
+#pragma once
 
 #include <string>
 #include <vector>
@@ -64,6 +63,3 @@ public:
 	void load(std::string chat_data, Character* speaker);
 	void draw(Camera* camera, sf::RenderWindow* window);
 };
-
-
-#endif

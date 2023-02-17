@@ -1,5 +1,4 @@
-#ifndef UTILS
-#define UTILS
+#pragma once
 
 #include <string>
 #include <sstream>
@@ -16,6 +15,3 @@ std::vector<std::string> split(const std::string &s, char delim);
 bool compareStrings(std::string s1, std::string s2, std::string to);
 
 std::vector<std::string> getFileLines(std::string path);
-
-
-#endif

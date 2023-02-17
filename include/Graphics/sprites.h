@@ -1,5 +1,4 @@
-#ifndef SPRITES
-#define SPRITES
+#pragma once
 
 #include <cmath>
 #include <SFML/Graphics.hpp>
@@ -47,6 +46,3 @@ public:
 	void draw(float x, float y, sf::RenderWindow* window, bool reversed = false);
 	void reset();
 };
-
-
-#endif

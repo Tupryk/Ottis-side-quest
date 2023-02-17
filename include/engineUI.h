@@ -1,5 +1,4 @@
-#ifndef ENGINEUI
-#define ENGINEUI
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -31,6 +30,3 @@ public:
 	EngineUI(char* arg_game);
 	int getInputs();
 };
-
-
-#endif

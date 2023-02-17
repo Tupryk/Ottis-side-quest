@@ -1,5 +1,4 @@
-#ifndef READ_OBJS
-#define READ_OBJS
+#pragma once
 
 #include <string>
 #include <vector>
@@ -23,6 +22,3 @@ NPC readNPC(std::vector<std::string> data, int* i);
 Slice readSlice(std::vector<std::string> data, int* i);
 Block readPlatform(std::vector<std::string> data, int* i);
 Camera readCamera(int window_w, int window_h, std::vector<std::string> data, int* i);
-
-
-#endif

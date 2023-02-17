@@ -1,5 +1,4 @@
-#ifndef OBJECTS
-#define OBJECTS
+#pragma once
 
 #include <algorithm>
 #include <random>
@@ -40,6 +39,3 @@ public:
 	void handle(Camera* camera, sf::RenderWindow* window); // Draws the puzzle up close and let's the player use it.
 	bool solved();
 };
-
-
-#endif

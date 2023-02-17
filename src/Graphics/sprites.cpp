@@ -1,4 +1,4 @@
-#include "sprites.h"
+#include "Graphics/sprites.h"
 
 
 void StaticImage::load(std::string ImageDrirectory, float w, float h, float x, float y)

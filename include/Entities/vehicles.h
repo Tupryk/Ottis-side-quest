@@ -1,5 +1,4 @@
-#ifndef VEHICLES
-#define VEHICLES
+#pragma once
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprite.h"
@@ -16,6 +15,3 @@ public:
 	void update() override;
 	void draw();
 };
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef PARTICLES
-#define PARTICLES
+#pragma once
 
 #include <cmath>
 #include <SFML/Graphics.hpp>
@@ -42,6 +41,3 @@ public:
 	void update(float x, float y, float z = 0);
 	void draw(sf::RenderWindow* window);
 };
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef APP
-#define APP
+#pragma once
 
 
 class App
@@ -8,6 +7,3 @@ public:
 	void mod(char* arg_game);
 	void run();
 };
-
-
-#endif

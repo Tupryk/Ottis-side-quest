@@ -1,4 +1,4 @@
-#include "background.h"
+#include "Entities/background.h"
 
 
 void Slice::init(float pos_x, float pos_y, float pos_z, std::string ImageDrirectory, float w, float h, float x, float y)

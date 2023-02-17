@@ -1,4 +1,4 @@
-#include "text.h"
+#include "Graphics/text.h"
 
 
 void Text::init(std::string content, std::string font_file, int line_length)

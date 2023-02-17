@@ -1,4 +1,4 @@
-#include "particles.h"
+#include "Graphics/particles.h"
 
 
 Particle::Particle(unsigned int r, unsigned int g, unsigned int b)

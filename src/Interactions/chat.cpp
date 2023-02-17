@@ -1,4 +1,4 @@
-#include "chat.h"
+#include "Interactions/chat.h"
 
 
 void Cursor::init(std::string font_file, int max_index)

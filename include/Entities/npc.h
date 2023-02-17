@@ -1,5 +1,4 @@
-#ifndef NPCS_H
-#define NPCS_H
+#pragma once
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
@@ -26,6 +25,3 @@ public:
 	void follow(StaticBody* body);
 	void attack(Character* character);
 };
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef ITEMS
-#define ITEMS
+#pragma once
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
@@ -17,6 +16,3 @@ public:
 	void getPicket(Character* player);
 	void draw(sf::RenderWindow* window);
 };
-
-
-#endif

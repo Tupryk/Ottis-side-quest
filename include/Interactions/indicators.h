@@ -1,5 +1,4 @@
-#ifndef WORLD_INTERATION
-#define WORLD_INTERATION
+#pragma once
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
@@ -7,7 +6,8 @@
 
 struct ButtonIndicator
 {
-	int appearingFrame = 0;
+	unsigned int appearingFrame = 0;
+	bool active = true;
 	StaticBody* on_object = NULL;
 };
 
@@ -25,6 +25,3 @@ public:
 	void add_object(StaticBody* body);
 	void draw(float player_x, float player_y, sf::RenderWindow* window);
 };
-
-
-#endif

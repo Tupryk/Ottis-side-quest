@@ -1,4 +1,4 @@
-#include "character.h"
+#include "Entities/character.h"
 
 
 void Character::updateState()

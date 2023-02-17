@@ -1,4 +1,4 @@
-#include "debug_utils.h"
+#include "Graphics/debug_utils.h"
 
 
 void drawPoint(float x, float y, sf::RenderWindow* window, float size)

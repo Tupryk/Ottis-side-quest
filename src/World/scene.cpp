@@ -1,4 +1,4 @@
-#include "scene.h"
+#include "World/scene.h"
 
 
 Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_data)

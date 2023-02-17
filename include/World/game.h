@@ -1,5 +1,4 @@
-#ifndef GAME
-#define GAME
+#pragma once
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -20,6 +19,3 @@ public:
 	Game(unsigned int width, unsigned int height, std::string title = "Tupryk Engine", std::string icon_file = "icon.png");
 	void run();
 };
-
-
-#endif

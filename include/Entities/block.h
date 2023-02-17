@@ -1,5 +1,4 @@
-#ifndef BLOCK
-#define BLOCK
+#pragma once
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
@@ -13,6 +12,3 @@ public:
 	Block(std::string ImageDrirectory, float w, float h, float x = 0, float y = 0);
 	void draw(sf::RenderWindow* window);
 };
-
-
-#endif

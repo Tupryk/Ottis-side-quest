@@ -1,5 +1,4 @@
-#ifndef PLAYER
-#define PLAYER
+#pragma once
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
@@ -17,6 +16,3 @@ public:
 	void init();
 	void move();
 };
-
-
-#endif

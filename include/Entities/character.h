@@ -1,5 +1,4 @@
-#ifndef CHARACTER
-#define CHARACTER
+#pragma once
 
 #include "../Physics/physics.h"
 #include "../Graphics/sprites.h"
@@ -32,6 +31,3 @@ struct Character : public RigidBody
 	void hurt(Character* character);
 	vec3d getHoldingPos();
 };
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VISUAL_TEXT
-#define VISUAL_TEXT
+#pragma once
 
 #include <cmath>
 #include <string>
@@ -39,6 +38,3 @@ public:
 	void reset();
 	void draw(float x, float y, sf::RenderWindow* window);
 };
-
-
-#endif

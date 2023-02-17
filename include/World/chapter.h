@@ -1,5 +1,4 @@
-#ifndef CHAPTER
-#define CHAPTER
+#pragma once
 
 #include <vector>
 
@@ -11,6 +10,3 @@ class Chapter
 	unsigned int currentScene = 1;
 	std::vector<Scene> scenes;
 };
-
-
-#endif

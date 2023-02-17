@@ -1,7 +1,7 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
-#include "camera.h"
+#include "Graphics/camera.h"
 
 
 void DynamicCamera::init(unsigned int window_w, unsigned int window_h, int scene_w, int scene_h, float offsetX, float offsetY, float speed)

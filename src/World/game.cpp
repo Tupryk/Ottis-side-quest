@@ -1,5 +1,5 @@
-#include "game.h"
-#include "scene.h"
+#include "World/game.h"
+#include "World/scene.h"
 
 
 Game::Game(unsigned int width, unsigned int height, std::string title, std::string icon_file)
