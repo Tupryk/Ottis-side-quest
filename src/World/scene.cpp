@@ -3,7 +3,7 @@
 
 Scene::Scene(unsigned int window_w, unsigned int window_h, std::string scene_data)
 {
-	std::vector<std::string> lines = getFileLines("../data/Games/Game0/Scenes/"+scene_data);
+	std::vector<std::string> lines = getFileLines("./data/Games/Game0/Scenes/"+scene_data);
 	for (int i = 0; i < lines.size(); i++)
 	{
 		std::vector<std::string> attributes = split(lines[i], ' ');

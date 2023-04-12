@@ -3,7 +3,7 @@
 
 void Text::init(std::string content, std::string font_file, int line_length)
 {
-    font.loadFromFile("../data/Games/Game0/Assets/Fonts/" + font_file);
+    font.loadFromFile("./data/Games/Game0/Assets/Fonts/" + font_file);
 	text.setFont(font);
 	text.setString(content);
     text.setFillColor(sf::Color::Black);
@@ -26,13 +26,13 @@ void Text::draw(float x, float y, sf::RenderWindow* window)
 
 void DynamicText::init(std::string content, std::string font_file, std::string sound_file, float speed, int line_length)
 {
-    font.loadFromFile("../data/Games/Game0/Assets/Fonts/" + font_file);
+    font.loadFromFile("./data/Games/Game0/Assets/Fonts/" + font_file);
 	text.setFont(font);
     text.setFillColor(sf::Color::Black);
     text.setCharacterSize(48);
     text.scale(0.1f, 0.1f);
 
-    buffer.loadFromFile("../data/Games/Game0/Assets/Snd/" + sound_file);
+    buffer.loadFromFile("./data/Games/Game0/Assets/Snd/" + sound_file);
 	sound.setBuffer(buffer);
 
     this->content = content;
@@ -41,7 +41,7 @@ void DynamicText::init(std::string content, std::string font_file, std::string s
 
 void DynamicText::update(std::string content, std::string sound_file) {
 	if (sound_file != "")
-		buffer.loadFromFile("../data/Games/Game0/Assets/Snd/" + sound_file);
+		buffer.loadFromFile("./data/Games/Game0/Assets/Snd/" + sound_file);
 	this->content = content;
 }
 void DynamicText::reset() {

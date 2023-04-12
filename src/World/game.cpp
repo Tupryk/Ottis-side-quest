@@ -7,7 +7,7 @@ Game::Game(unsigned int width, unsigned int height, std::string title, std::stri
 	this->width = width;
 	this->height = height;
 	this->title = title;
-	this->icon_path = "../data/AppIcons/"+icon_file;
+	this->icon_path = "./data/AppIcons/"+icon_file;
 }
 
 void Game::run()
