@@ -5,13 +5,12 @@
 #include <cmath>
 #include <map>
 
-#include "engineUI.h"
 #include "utils.h"
 
 
 class EngineUI
 {
-	std::map<std::string, void (EngineUI::*)(std::string)> commands;
+	std::map<std::string, std::function<int(int)>> commands;
 	std::string u_input;
 
 	std::string game;

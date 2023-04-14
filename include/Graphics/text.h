@@ -30,7 +30,7 @@ class DynamicText : StaticBody
 	std::string content;
 	int line_length = 0;
 	int letter_index = 0;
-	float speed;
+	// float speed;
 
 public:
 	void init(std::string content, std::string font_file, std::string sound_file, float speed, int line_length = 0);

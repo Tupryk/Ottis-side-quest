@@ -113,7 +113,6 @@ Item readItem(std::vector<std::string> data, int* i)
 	int height = -1;
 	float x_pos = 0;
 	float y_pos = 0;
-	float z_pos = 0;
 	*i = (*i) + 1;
 	std::vector<std::string> attributes = split(data[*i], ' ');
 	while (attributes.size() >= 1 && attributes[0] != "}")

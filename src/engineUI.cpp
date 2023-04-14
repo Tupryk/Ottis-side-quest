@@ -6,9 +6,9 @@ EngineUI::EngineUI(char* arg_game)
 	if (arg_game)
 		game = arg_game;
 
-	commands["help"] = &EngineUI::help;
-	commands["place"] = &EngineUI::placeObject;
-	commands["kill"] = &EngineUI::killObject;
+	// commands["help"] = &EngineUI::help;
+	// commands["place"] = &EngineUI::placeObject;
+	// commands["kill"] = &EngineUI::killObject;
 
 	dogsay("bruh");
 	std::cout << "Inizialized modder on game: " << game << std::endl;
@@ -54,14 +54,14 @@ void EngineUI::help(std::string command)
 
 void EngineUI::invalid(std::string text)
 {
-	std::vector<std::string> commands = {"exit", "help", "run", "place", "kill", "create", "delete", "list", "info", "switch"};
-	std::sort(commands.begin(), commands.end(),
+	std::vector<std::string> possible_commands = {"exit", "help", "run", "place", "kill", "create", "delete", "list", "info", "switch"};
+	std::sort(possible_commands.begin(), possible_commands.end(),
 		std::bind(compareStrings, std::placeholders::_1, std::placeholders::_2, text));
-	float prob = commands[0].compare(text);
+	float prob = possible_commands[0].compare(text);
 
 	std::cout << "Invalid input.";
 	if (prob < 2)
-		std::cout << "Did you mean \"" << commands[0] << "\"?";
+		std::cout << "Did you mean \"" << possible_commands[0] << "\"?";
 	std::cout << "\n";
 }
 
